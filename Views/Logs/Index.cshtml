@@ -1,0 +1,207 @@
+﻿<h1 class="h1"><span class="fas fa-history"></span> Anwendungsprotokoll</h1>
+
+<div class="table-responsive mt-3">
+	<table class="table" id="log">
+		<thead class="table-light">
+			<tr>
+				<th scope="col">Zeitstempel</th>
+				<th scope="col">Schwere</th>
+				<th scope="col">Nachricht</th>
+				<th scope="col">&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody class="template">
+			<tr>
+				<td data-name="time"></td>
+				<td data-name="level"></td>
+				<td data-name="message"></td>
+				<td class="text-end">
+					<button type="button" class="btn btn-sm btn-outline-dark details"><span class="fas fa-fw fa-search"></span></button>
+				</td>
+			</tr>
+		</tbody>
+		<tbody class="items"></tbody>
+	</table>
+</div>
+
+<div class="modal fade" id="detail-modal" tabindex="-1" aria-labelledby="dm-title" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="dm-title"><span class="fas fa-search"></span> Details</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+			</div>
+			<div class="modal-body">
+				<h4 class="properties h4">Eigenschaften</h4>
+				<div class="properties table-responsive">
+					<table class="table table-sm">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">Schlüssel</th>
+								<th scope="col">Wert</th>
+							</tr>
+						</thead>
+						<tbody id="properties"></tbody>
+					</table>
+				</div>
+
+				<h4 class="h4 exception">Ausnahme</h4>
+				<p class="exception whitespace-pre overflow-auto" id="exception"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Schließen</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+	<script type="text/javascript">
+		$(function () {
+			let getFontColor = function (backgroundColor, useAlpha) {
+				if (useAlpha === undefined || useAlpha === null)
+					useAlpha = false;
+
+				let cvs = document.createElement('canvas');
+				cvs.height = 1;
+				cvs.width = 1;
+				let ctx = cvs.getContext('2d');
+				ctx.fillStyle = backgroundColor;
+				ctx.fillRect(0, 0, 1, 1);
+				let res = ctx.getImageData(0, 0, 1, 1).data;
+
+				let r = Number(res[0]);
+				let g = Number(res[1]);
+				let b = Number(res[2]);
+				let a = Number(res[3]);
+
+				if (!useAlpha && a === 0)
+					return 'rgba(0, 0, 0, 1)';
+
+				if (!useAlpha)
+					a = 1;
+
+				if (a > 1)
+					a /= 255;
+
+				let luminance = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
+				if (luminance <= 0.5)
+					return 'rgba(255, 255, 255, ' + a + ')';
+
+				return 'rgba(0, 0, 0, ' + a + ')';
+			};
+
+			let loadLines = function (index, append) {
+					let log = $('#log');
+					log.data('loading', true);
+
+					if (!append)
+						log.find('.items').children().remove();
+
+					$.getJSON('@Url.Action("Get", "Logs")/' + index, function (data) {
+						if (!data)
+							return;
+
+						for (let entry of data) {
+							let dt = luxon.DateTime.fromISO(entry.timestamp);
+							let row = $('#log .template').children().clone(true);
+							$('#log .items').append(row);
+
+							row.data('exception', entry.exception.trim());
+							row.data('properties', entry.properties);
+
+							row.find('[data-name="time"]').text(dt.toFormat('dd.MM.yyyy HH:mm:ss'));
+							row.find('[data-name="level"]').text(entry.level);
+							row.find('[data-name="message"]').text(entry.message);
+
+							switch (entry.level) {
+								case 'Fatal':
+									row.css('background-color', '#d30a16');
+									row.css('color', getFontColor(row.css('background-color')));
+									row.css('font-weight', 'bold');
+									break;
+								case 'Error':
+									row.find('[data-name="level"]').css('color', 'var(--bs-danger)');
+									row.find('[data-name="level"]').css('font-weight', 'bold');
+									break;
+								case 'Warning':
+									$(row).find('[data-name="level"]').css('color', 'var(--bs-warning)');
+									break;
+								case 'Information':
+									row.find('[data-name="level"]').css('color', 'var(--bs-info)');
+									break;
+							}
+
+							row.find('[data-name="message"]').css({
+								'white-space': 'pre-line',
+								'max-width': '800px'
+							});
+
+							let no = parseInt(log.data('id'));
+							if (isNaN(no) || no > data.id)
+								log.data('id', no);
+						}
+
+						log.data('loading', false);
+					});
+				};
+
+				$(window).on('scroll', function () {
+					let _self = $(this);
+					let log = $('#log');
+
+					if (!log.data('loading')) {
+						let diff = log.height() - _self.height() - _self.scrollTop();
+						if (diff < 200) {
+							let startId = log.data('id');
+							loadEntries(startId, true);
+						}
+					}
+				});
+
+				$('.details').click(function (event) {
+					event.preventDefault();
+					let row = $(event.currentTarget).closest('tr');
+					let properties = row.data('properties');
+					let exception = row.data('exception');
+
+					if (!properties && exception === '')
+						return;
+
+					if (properties) {
+						$('#properties').children().remove();
+						$('#detail-modal').find('.properties').show();
+						delete properties.newline;
+						delete properties.error;
+
+						for (let key in properties) {
+							let val = properties[key];
+							if (typeof val === 'object')
+								val = JSON.stringify(val);
+
+							$('<tr/>')
+								.append($('<td/>').append($('<em/>').text(key)))
+								.append($('<td/>').text(val))
+								.appendTo($('#properties'));
+						}
+					}
+					else {
+						$('#detail-modal').find('.properties').hide();
+					}
+
+					if (exception !== '') {
+						$('#detail-modal').find('.exception').show();
+						$('#exception').text(exception);
+					}
+					else {
+						$('#detail-modal').find('.exception').hide();
+					}
+
+					$('#detail-modal').data('modal').show();
+				});
+
+				loadLines(0, false);
+		});
+	</script>
+}

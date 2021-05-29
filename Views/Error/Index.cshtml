@@ -1,0 +1,6 @@
+﻿@model ErrorViewModel
+<div class="text-center col-sm-6 offset-sm-3 mt-4">
+	<span class="display-2 text-danger @Model.Icon"></span>
+	<h1 class="h1 text-danger">@Model.Title</h1>
+	<p>@Html.Raw(Model.Description)</p>
+</div>

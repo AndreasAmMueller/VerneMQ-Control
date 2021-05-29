@@ -1,0 +1,139 @@
+﻿@model MqttUser
+<h1 class="h1"><span class="fas fa-user"></span> @ViewBag.ViewTitle</h1>
+
+<form asp-area="" asp-controller="User" asp-action="Edit" asp-route-id="" method="post">
+	<input asp-for="Id" type="hidden" value="@Model.Id">
+	<input asp-for="PermissionsJson" type="hidden" value="@Model.PermissionsJson">
+
+	<div class="row g-3 mb-3">
+		<div class="col">
+			<label asp-for="Username">Benutzername</label>
+			<input asp-for="Username" class="form-control">
+			<span asp-validation-for="Username"></span>
+		</div>
+		<div class="col-auto">
+			<label>&nbsp;</label>
+			<div class="form-check mt-2">
+				<input asp-for="IsEnabled" class="form-check-input" type="checkbox">
+				<label asp-for="IsEnabled" class="form-check-label">Aktiv</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Password">Passwort</label>
+		<div class="input-group">
+			<input asp-for="Password" class="form-control" type="password" placeholder="Nur angeben, um Passwort zu ändern">
+			<button type="button" class="btn btn-outline-secondary toggle-password"><span class="fas fa-fw fa-eye"></span></button>
+		</div>
+		<span asp-validation-for="Password"></span>
+	</div>
+
+	<div class="row g-3 mb-3">
+		<div class="col-sm">
+			<label asp-for="ClientRegex">Zulässige Client-Namen <small>(<a href="https://regex101.com/" class="blank">RegEx</a>)</small></label>
+			<input asp-for="ClientRegex" class="form-control" placeholder="[0-9a-zA-Z-]+">
+			<span asp-validation-for="ClientRegex"></span>
+		</div>
+		<div class="col-sm">
+			<label asp-for="BaseTopic">Base-Topic</label>
+			<div class="input-group">
+				<input asp-for="BaseTopic" class="form-control" title="Base-Topic, mit dem alles beginnen muss (subscribe/publish)">
+				<div class="input-group-text">
+					<div class="form-check">
+						<input asp-for="DoRewrite" class="form-check-input" type="checkbox">
+						<label asp-for="DoRewrite" class="form-check-label" title="Wenn ein Topic nicht passt, schreibe es um">umschreiben</label>
+					</div>
+				</div>
+			</div>
+			<span asp-validation-for="BaseTopic"></span>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-outline-primary">Speichern</button>
+	<a asp-area="" asp-controller="User" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">Abbrechen</a>
+	@if (Model.Id > 0)
+	{
+		<button type="submit" name="id" value="@Model.Id" asp-area="" asp-controller="User" asp-action="Delete" asp-route-id="" class="btn btn-outline-danger" id="delete">Löschen</button>
+	}
+</form>
+
+<p class="mt-5">
+	Die Lese-/Schreibrechte gelten ab dem Base-Topic (siehe oben).
+</p>
+<div class="table-responsive">
+	<table class="table" id="permissions">
+		<thead class="table-light">
+			<tr>
+				<th scope="col">Topic</th>
+				<th scope="col" class="text-center">Lesen</th>
+				<th scope="col" class="text-center">Schreiben</th>
+				<th scope="col" class="text-end">
+					<button type="button" class="btn btn-sm btn-success" id="new-permission"><span class="fas fa-fw fa-plus"></span></button>
+				</th>
+			</tr>
+		</thead>
+		<tbody class="template">
+			<tr>
+				<td>
+					<input class="form-control form-control-sm" data-name="topic">
+				</td>
+				<td class="text-center">
+					<input class="form-check-input mt-2" type="checkbox" data-name="canRead">
+				</td>
+				<td class="text-center">
+					<input class="form-check-input mt-2" type="checkbox" data-name="canWrite">
+				</td>
+				<td class="text-end">
+					<button type="button" class="btn btn-sm btn-outline-danger delete-permission"><span class="fas fa-fw fa-minus"></span></button>
+				</td>
+			</tr>
+		</tbody>
+		<tbody class="items"></tbody>
+	</table>
+</div>
+
+@section Scripts {
+	<script type="text/javascript">
+		$(function () {
+			$('#delete').click(function (event) {
+				if (!confirm('Soll der Benutzer gelöscht werden?'))
+					event.preventDefault();
+			});
+
+			$('#new-permission').click(function (event) {
+				event.preventDefault();
+				let row = $('#permissions .template').children().clone(true);
+				$('#permissions .items').append(row);
+			});
+
+			$('.delete-permission').click(function (event) {
+				event.preventDefault();
+				$(event.currentTarget).closest('tr').remove();
+			});
+
+			$('form').submit(function () {
+				let permissions = [];
+				$('#permissions .items').each(function (_, row) {
+					let topic = $(row).find('[data-name="topic"]').val().trim();
+					if (topic !== '') {
+						permissions.push({
+							topic: topic,
+							canRead: $(row).find('[data-name="canRead"]').is(':checked'),
+							canWrite: $(row).find('[data-name="canWrite"]').is(':checked')
+						});
+					}
+				});
+				$('#PermissionsJson').val(JSON.stringify(permissions));
+			});
+
+			for (let permission of JSON.parse($('#PermissionsJson').val())) {
+				let row = $('#permissions .template').children().clone(true);
+				$(row).find('[data-name="topic"]').val(permission.topic);
+				$(row).find('[data-name="canRead"]').prop('checked', permission.canRead);
+				$(row).find('[data-name="canWrite"]').prop('checked', permission.canWrite);
+				$('#permissions .items').append(row);
+			}
+		});
+	</script>
+}

@@ -1,0 +1,48 @@
+﻿@model List<MqttUser>
+<h1 class="h1"><span class="fas fa-users"></span> MQTT Benutzer</h1>
+
+<form asp-area="" asp-controller="User" asp-action="Delete" asp-route-id="" method="post">
+	<div class="table-responsive">
+		<table class="table">
+			<thead class="table-light">
+				<tr>
+					<th scope="col" class="text-center" style="width: 30px;">Aktiv</th>
+					<th scope="col">Benutzername</th>
+					<th scope="col">Client-RegEx</th>
+					<th scope="col">Base-Topic</th>
+					<th scope="col" class="text-end">
+						<a asp-area="" asp-controller="User" asp-action="Create" asp-route-id="" class="btn btn-sm btn-success"><span class="fas fa-fw fa-plus"></span></a>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var user in Model)
+				{
+					<tr>
+						<td class="text-center">
+							<span class="fas fa-fw @(user.IsEnabled ? "fa-check text-success" : "fa-times text-danger")"></span>
+						</td>
+						<td>@user.Username</td>
+						<td>@user.ClientRegex</td>
+						<td condition-class-text-muted="@(!user.DoRewrite)">@user.BaseTopic</td>
+						<td class="text-end">
+							<a asp-area="" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-outline-primary"><span class="fas fa-fw fa-pen"></span></a>
+							<button type="submit" name="id" value="@user.Id" class="btn btn-sm btn-outline-danger delete"><span class="fas fa-fw fa-trash"></span></button>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</form>
+
+@section Scripts {
+	<script type="text/javascript">
+		$(function () {
+			$('.delete').click(function (event) {
+				if (!confirm('Soll der Benutzer gelöscht werden?'))
+					event.preventDefault();
+			});
+		});
+	</script>
+}

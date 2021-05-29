@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerneMQ-Control", "VerneMQ-Control.csproj", "{423C96A6-DB76-4F94-A0D6-781F8E72ACD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE0219FB-010A-4162-A07C-536DB7AE1310}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		CodeMaid.config = CodeMaid.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{423C96A6-DB76-4F94-A0D6-781F8E72ACD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423C96A6-DB76-4F94-A0D6-781F8E72ACD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423C96A6-DB76-4F94-A0D6-781F8E72ACD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423C96A6-DB76-4F94-A0D6-781F8E72ACD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05CE7825-F385-4378-95C6-7BC895C69D26}
+	EndGlobalSection
+EndGlobal

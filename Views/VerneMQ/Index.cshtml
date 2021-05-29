@@ -1,0 +1,63 @@
+﻿@model VerneMQViewModel
+<h1 class="h1"><span class="fas fa-server"></span> VerneMQ</h1>
+
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<td>Laufzeit</td>
+			<td>@Model.Uptime</td>
+		</tr>
+		<tr>
+			<td>Clients online</td>
+			<td>@Model.ClientsOnline</td>
+		</tr>
+		<tr>
+			<td>Subscriptions</td>
+			<td>@Model.Subscriptions</td>
+		</tr>
+		<tr>
+			<td>Empfangen</td>
+			<td>@Model.DataReceived</td>
+		</tr>
+		<tr>
+			<td>Gesendet</td>
+			<td>@Model.DataSent</td>
+		</tr>
+		<tr>
+			<td>Nachrichten empfangen</td>
+			<td>@Model.MessagesReceived</td>
+		</tr>
+		<tr>
+			<td>Nachrichten gesendet</td>
+			<td>@Model.MessagesSent</td>
+		</tr>
+		<tr>
+			<td>Nachrichten gespeichert</td>
+			<td>@Model.RetainedMessages</td>
+		</tr>
+		<tr>
+			<td>Von Cluster erhalten</td>
+			<td>@Model.ClusterReceived</td>
+		</tr>
+		<tr>
+			<td>An Cluster gesendet</td>
+			<td>@Model.ClusterSent</td>
+		</tr>
+		<tr>
+			<td>Durch Cluster verworfen</td>
+			<td>@Model.ClusterDropped</td>
+		</tr>
+		<tr>
+			<td>Nachrichten in Warteschlange</td>
+			<td>@(Model.QueueIn - Model.QueueOut)</td>
+		</tr>
+		<tr>
+			<td>Verworfen (aus Warteschlange)</td>
+			<td>@Model.QueueDropped</td>
+		</tr>
+		<tr>
+			<td>Arbeitsspeicher</td>
+			<td>@Model.UsedMemory</td>
+		</tr>
+	</table>
+</div>

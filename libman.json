@@ -1,0 +1,86 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "regenerator-runtime@0.13.7",
+      "destination": "wwwroot/lib/rr/",
+      "files": [
+        "LICENSE",
+        "path.js",
+        "runtime.js"
+      ]
+    },
+    {
+      "library": "bootstrap@5.0.1",
+      "destination": "wwwroot/lib/bs/",
+      "files": [
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap.css.map",
+        "dist/css/bootstrap.min.css",
+        "dist/css/bootstrap.min.css.map",
+        "dist/js/bootstrap.bundle.js",
+        "dist/js/bootstrap.bundle.js.map",
+        "dist/js/bootstrap.bundle.min.js",
+        "dist/js/bootstrap.bundle.min.js.map",
+        "LICENSE"
+      ]
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/lib/jq/",
+      "files": [
+        "LICENSE.txt",
+        "dist/jquery.js",
+        "dist/jquery.min.js",
+        "dist/jquery.min.map"
+      ]
+    },
+    {
+      "library": "luxon@1.27.0",
+      "destination": "wwwroot/lib/luxon/",
+      "files": [
+        "license.md",
+        "build/global/luxon.js",
+        "build/global/luxon.js.map",
+        "build/global/luxon.min.js",
+        "build/global/luxon.min.js.map"
+      ]
+    },
+    {
+      "library": "@fortawesome/fontawesome-free@5.15.3",
+      "destination": "wwwroot/lib/fa/",
+      "files": [
+        "css/all.css",
+        "css/all.min.css",
+        "webfonts/fa-brands-400.eot",
+        "webfonts/fa-brands-400.svg",
+        "webfonts/fa-brands-400.ttf",
+        "webfonts/fa-brands-400.woff",
+        "webfonts/fa-brands-400.woff2",
+        "webfonts/fa-regular-400.eot",
+        "webfonts/fa-regular-400.svg",
+        "webfonts/fa-regular-400.ttf",
+        "webfonts/fa-regular-400.woff",
+        "webfonts/fa-regular-400.woff2",
+        "webfonts/fa-solid-900.eot",
+        "webfonts/fa-solid-900.svg",
+        "webfonts/fa-solid-900.ttf",
+        "webfonts/fa-solid-900.woff",
+        "webfonts/fa-solid-900.woff2",
+        "LICENSE.txt"
+      ]
+    },
+    {
+      "library": "@microsoft/signalr@5.0.6",
+      "destination": "wwwroot/lib/signalr/",
+      "files": [
+        "README.md",
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.js.map",
+        "dist/browser/signalr.min.js.map",
+        "dist/browser/signalr.min.js"
+      ]
+    }
+  ]
+}

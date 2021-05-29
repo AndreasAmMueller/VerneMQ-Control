@@ -1,0 +1,19 @@
+﻿@model WebUser
+<h1 class="h1"><span class="fas fa-user"></span> Profil</h1>
+
+<form asp-area="" asp-controller="Account" asp-action="Index" asp-route-id="" method="post">
+	<div class="mb-3">
+		<label asp-for="Username">Benutzername</label>
+		<input asp-for="Username" class="form-control">
+		<span asp-validation-for="Username"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Password">Passwort</label>
+		<input asp-for="Password" class="form-control" type="password" placeholder="Nur angeben, um das Passwort zu ändern">
+		<span asp-validation-for="Password"></span>
+	</div>
+
+	<button type="submit" class="btn btn-outline-primary">Speichern</button>
+	<a asp-area="" asp-controller="Account" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">Abbrechen</a>
+</form>

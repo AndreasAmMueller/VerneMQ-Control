@@ -34,7 +34,7 @@ namespace VerneMQ.Control.Database.Entities
 		/// <summary>
 		/// Gets or sets the client regex.
 		/// </summary>
-		public string ClientRegex { get; set; } = "[0-9a-zA-Z-]+";
+		public string ClientRegex { get; set; } = "^[0-9a-zA-Z-_]+$";
 
 		/// <summary>
 		/// Gets or sets the base topic.

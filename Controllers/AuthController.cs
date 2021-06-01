@@ -117,7 +117,6 @@ namespace VerneMQ.Control.Controllers
 						string topic = req.Value<string>("topic");
 						if (user.DoRewrite && !string.IsNullOrWhiteSpace(user.BaseTopic) && !topic.StartsWith(user.BaseTopic))
 							topic = $"{user.BaseTopic.TrimEnd('/')}/{topic.TrimStart('/')}";
-						topic = $"{user.BaseTopic.TrimEnd('/')}/{topic.TrimStart('/')}";
 
 						bool isAllowed = user.Permissions
 							.Where(p => p.CanWrite)

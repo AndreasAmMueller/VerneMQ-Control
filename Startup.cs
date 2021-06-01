@@ -113,6 +113,7 @@ namespace VerneMQ.Control
 
 			services.AddSingleton(configuration);
 			services.AddSingletonHostedService<InitService>();
+			services.AddSingletonHostedService<BackgroundUpdateService>();
 
 			#endregion Services and Dependency Injection
 

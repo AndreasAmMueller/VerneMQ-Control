@@ -19,7 +19,7 @@ create table mqtt_users
 	id integer not null,
 	username text(50) not null,
 	password_hash text(200),
-	client_regex text(150) not null,
+	client_regex text(150),
 	base_topic text(100),
 	do_rewrite integer(1) not null default 0,
 	is_enabled integer(1) not null default 1,

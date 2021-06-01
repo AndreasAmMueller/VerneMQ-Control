@@ -5,59 +5,88 @@
 	<table class="table">
 		<tr>
 			<td>Laufzeit</td>
-			<td>@Model.Uptime</td>
+			<td data-name="uptime">@Model.Uptime</td>
 		</tr>
 		<tr>
 			<td>Clients online</td>
-			<td>@Model.ClientsOnline</td>
+			<td data-name="clientsOnline">@Model.ClientsOnline</td>
 		</tr>
 		<tr>
 			<td>Subscriptions</td>
-			<td>@Model.Subscriptions</td>
+			<td data-name="subscriptions">@Model.Subscriptions</td>
 		</tr>
 		<tr>
 			<td>Empfangen</td>
-			<td>@Model.DataReceived</td>
+			<td data-name="dataReceived">@Model.DataReceived</td>
 		</tr>
 		<tr>
 			<td>Gesendet</td>
-			<td>@Model.DataSent</td>
+			<td data-name="dataSent">@Model.DataSent</td>
 		</tr>
 		<tr>
 			<td>Nachrichten empfangen</td>
-			<td>@Model.MessagesReceived</td>
+			<td data-name="messagesReceived">@Model.MessagesReceived</td>
 		</tr>
 		<tr>
 			<td>Nachrichten gesendet</td>
-			<td>@Model.MessagesSent</td>
+			<td data-name="messagesSent">@Model.MessagesSent</td>
 		</tr>
 		<tr>
 			<td>Nachrichten gespeichert</td>
-			<td>@Model.RetainedMessages</td>
+			<td data-name="retainedMessages">@Model.RetainedMessages</td>
 		</tr>
 		<tr>
 			<td>Von Cluster erhalten</td>
-			<td>@Model.ClusterReceived</td>
+			<td data-name="clusterReceived">@Model.ClusterReceived</td>
 		</tr>
 		<tr>
 			<td>An Cluster gesendet</td>
-			<td>@Model.ClusterSent</td>
+			<td data-name="clusterSent">@Model.ClusterSent</td>
 		</tr>
 		<tr>
 			<td>Durch Cluster verworfen</td>
-			<td>@Model.ClusterDropped</td>
+			<td data-name="clusterDropped">@Model.ClusterDropped</td>
 		</tr>
 		<tr>
 			<td>Nachrichten in Warteschlange</td>
-			<td>@(Model.QueueIn - Model.QueueOut)</td>
+			<td data-name="queued">@(Model.QueueIn - Model.QueueOut)</td>
 		</tr>
 		<tr>
 			<td>Verworfen (aus Warteschlange)</td>
-			<td>@Model.QueueDropped</td>
+			<td data-name="queueDropped">@Model.QueueDropped</td>
 		</tr>
 		<tr>
 			<td>Arbeitsspeicher</td>
-			<td>@Model.UsedMemory</td>
+			<td data-name="usedMemory">@Model.UsedMemory</td>
 		</tr>
 	</table>
 </div>
+
+@section Scripts
+{
+	<script type="text/javascript">
+		$(function () {
+			let websocket = new signalR.HubConnectionBuilder()
+				.withUrl('@Url.Action("Index", "Live")', {
+					transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling
+				})
+				// Trace, Information, Warning, Error, None
+				.configureLogging(signalR.LogLevel.None)
+				.build();
+
+			websocket.start()
+				.then(function () {
+					websocket.on('UpdateVerneMQ', function (model) {
+						$('[data-name]').each(function (_, el) {
+							let key = $(el).data('name');
+							$(el).text(model[key]);
+						});
+						$('[data-name="queued"]').text(Number(model.queueIn) - Number(model.queueOut));
+					});
+				})
+				.catch(function (error) {
+					console.log('SignalR Error', error);
+				});
+		});
+	</script>
+}

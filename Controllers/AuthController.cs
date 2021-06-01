@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -41,7 +42,9 @@ namespace VerneMQ.Control.Controllers
 		/// <returns></returns>
 		public async Task<IActionResult> Mqtt()
 		{
-			bool isDev = configuration.GetValue("ASPNETCORE_ENVIRONMENT", "Production") == "Development";
+			int cacheSeconds = configuration.GetValue("Hosting:CacheTime", 60);
+			cacheSeconds = Math.Max(cacheSeconds, 0);   // prevent negative values.
+			Response.Headers.Add("cache-control", $"max-age={cacheSeconds}");
 
 			string json = null;
 			using (var sr = new StreamReader(Request.Body))

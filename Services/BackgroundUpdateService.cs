@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
@@ -12,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using VerneMQ.Control.Hubs;
 using VerneMQ.Control.Models;
+using VerneMQ.Control.Utils;
 
 namespace VerneMQ.Control.Services
 {
@@ -25,6 +22,7 @@ namespace VerneMQ.Control.Services
 		private readonly IServiceScopeFactory serviceScopeFactory;
 
 		private Timer vmqTimer;
+		private bool errorReported;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BackgroundUpdateService"/> class.
@@ -65,34 +63,14 @@ namespace VerneMQ.Control.Services
 		{
 			try
 			{
-				using var httpClient = new HttpClient();
 				using var scope = serviceScopeFactory.CreateScope();
 
 				var hub = scope.ServiceProvider.GetRequiredService<IHubContext<WebHub>>();
 				var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-				string url = configuration.GetValue("VerneMQ:Metrics", "http://localhost:8888/metrics");
-				var urlMatch = Regex.Match(url, @"^(https?:\/\/)(.*)@(.*)$");
-				if (urlMatch.Success)
-				{
-					httpClient.DefaultRequestHeaders.Authorization = new("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes(urlMatch.Groups[2].Value)));
-					url = $"{urlMatch.Groups[1].Value}{urlMatch.Groups[3].Value}";
-				}
-
-				var res = await httpClient.GetAsync(url);
-				if (!res.IsSuccessStatusCode)
+				var metrics = await VmqHelper.GetMetrics(configuration.GetValue("VerneMQ:Metrics", "http://localhost:8888/metrics"));
+				if (metrics == null)
 					return;
-
-				string content = await res.Content.ReadAsStringAsync();
-				var matches = Regex.Matches(content, @"^([^#].+){.*} (.+)$", RegexOptions.Multiline);
-				var metrics = new Dictionary<string, ulong>();
-				foreach (Match match in matches)
-				{
-					if (!metrics.ContainsKey(match.Groups[1].Value))
-						metrics.Add(match.Groups[1].Value, 0);
-
-					metrics[match.Groups[1].Value] += ulong.Parse(match.Groups[2].Value);
-				}
 
 				var model = new VerneMQViewModel
 				{
@@ -111,14 +89,19 @@ namespace VerneMQ.Control.Services
 					UsedMemoryBytes = metrics["vm_memory_total"],
 					UptimeMilliseconds = metrics["system_wallclock"],
 					RetainedMessages = metrics["retain_messages"],
-					Subscriptions = metrics["router_subscriptions"]
+					Subscriptions = metrics["router_subscriptions"],
+					Clients = await VmqHelper.GetClients(configuration.GetValue("VerneMQ:Admin", "/vernemq/bin/vmq-admin"), logger)
 				};
 
 				await hub.Clients.Group(WebHub.Authenticated).SendAsync("UpdateVerneMQ", model);
+				errorReported = false;
 			}
 			catch (Exception ex)
 			{
-				logger.LogError(ex, $"Updating VerneMQ Information failed: {ex.GetMessage()}");
+				if (!errorReported)
+					logger.LogError(ex, $"Updating VerneMQ Information failed: {ex.GetMessage()}");
+
+				errorReported = true;
 			}
 		}
 	}

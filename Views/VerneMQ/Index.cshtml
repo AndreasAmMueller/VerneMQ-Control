@@ -62,6 +62,50 @@
 	</table>
 </div>
 
+<div class="table-responsive mt-4">
+	<table class="table" id="clients">
+		<thead class="table-light">
+			<tr>
+				<th scope="col">Benutzer</th>
+				<th scope="col">Client ID</th>
+				<th scope="col">IP Adresse</th>
+				<th scope="col">Port</th>
+				<th scope="col">Protokoll</th>
+				<th scope="col">Status</th>
+				<th scope="col" class="text-center">Sauberer Start</th>
+				<th scope="col">Verbunden seit</th>
+			</tr>
+		</thead>
+		<tbody class="template">
+			<tr>
+				<td data-name="userName"></td>
+				<td data-name="clientId"></td>
+				<td data-name="ipAddress"></td>
+				<td data-name="port"></td>
+				<td data-name="protocolVersion"></td>
+				<td data-name="status"></td>
+				<td data-name="cleanSession" class="text-center"></td>
+				<td data-name="sessionStart"></td>
+			</tr>
+		</tbody>
+		<tbody class="items">
+			@foreach (var client in Model.Clients)
+			{
+				<tr>
+					<td>@client.UserName</td>
+					<td>@client.ClientId</td>
+					<td>@client.IpAddress</td>
+					<td>@client.Port</td>
+					<td>@client.ProtocolVersion</td>
+					<td>@client.Status</td>
+					<td class="text-center"><span class="fas @(client.CleanSession ? "fa-check text-success" : "fa-times text-warning")"></span></td>
+					<td>@client.SessionStartTime.ToString("dd.MM.yyyy HH:mm:ss")</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
 @section Scripts
 {
 	<script type="text/javascript">
@@ -72,6 +116,7 @@
 				})
 				// Trace, Information, Warning, Error, None
 				.configureLogging(signalR.LogLevel.None)
+				.withAutomaticReconnect()
 				.build();
 
 			websocket.start()
@@ -82,6 +127,22 @@
 							$(el).text(model[key]);
 						});
 						$('[data-name="queued"]').text(Number(model.queueIn) - Number(model.queueOut));
+
+						$('#clients .items').children().remove();
+						for (let client of model.clients) {
+							let dt = luxon.DateTime.fromMillis(client.sessionStart);
+							let row = $('#clients .template').children().clone(true);
+
+							$(row).find('[data-name]').each(function (_, el) {
+								let key = $(el).data('name');
+								$(el).text(client[key]);
+							});
+
+							$(row).find('[data-name="sessionStart"]').text(dt.toFormat('dd.MM.yyyy HH:mm:ss'));
+							$(row).find('[data-name="cleanSession"]').html($('<span/>').addClass('fas').addClass(client.sessionStart ? 'fa-check text-success' : 'fa-times text-warning'));
+
+							$('#clients .items').append(row);
+						}
 					});
 				})
 				.catch(function (error) {

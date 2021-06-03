@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VerneMQ.Control.Models
 {
@@ -134,6 +135,11 @@ namespace VerneMQ.Control.Models
 		public string Uptime => TimeSpan.FromMilliseconds(UptimeMilliseconds).ToShortString();
 
 		#endregion Display
+
+		/// <summary>
+		/// Gets or sets the list of clients.
+		/// </summary>
+		public List<VmqClient> Clients { get; set; } = new();
 
 		private static string AutoSize(ulong bytes)
 		{

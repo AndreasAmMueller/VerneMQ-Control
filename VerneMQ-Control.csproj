@@ -46,19 +46,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Database\SqlScripts\*.sql" />
     <EmbeddedResource Include="Database\SqlScripts\*.sql" />
+
+    <None Remove="Translation\VerneMQ.Control.txd" />
+    <EmbeddedResource Include="Translation\VerneMQ.Control.txd" />
 
     <Content Include="appsettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\launchSettings.json.template">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

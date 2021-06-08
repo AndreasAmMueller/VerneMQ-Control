@@ -1,14 +1,14 @@
 ﻿@model List<WebUser>
-<h1 class="h1"><span class="fas fa-users"></span> Benutzerverwaltung</h1>
+<h1 class="h1"><span class="fas fa-users"></span> @Tx.T("Users.Index.ViewTitle")</h1>
 
 <form asp-area="" asp-controller="Users" asp-action="Delete" asp-route-id="" method="post">
 	<div class="table-responsive">
 		<table class="table">
 			<thead class="table-light">
 				<tr>
-					<th scope="col" class="text-center" style="width: 30px;">Aktiv</th>
-					<th scope="col">Benutzername</th>
-					<th scope="col" class="text-center">Admin</th>
+					<th scope="col" class="text-center" style="width: 30px;">@Tx.T("Users.Index.Enabled")</th>
+					<th scope="col">@Tx.T("Users.Index.Username")</th>
+					<th scope="col" class="text-center">@Tx.T("Users.Index.Admin")</th>
 					<th scope="col" class="text-end">
 						<a asp-area="" asp-controller="Users" asp-action="Create" asp-route-id="" class="btn btn-sm btn-success"><span class="fas fa-fw fa-plus"></span></a>
 					</th>
@@ -40,7 +40,7 @@
 	<script type="text/javascript">
 		$(function () {
 			$('.delete').click(function (event) {
-				if (!confirm('Soll der Benutzer gelöscht werden?'))
+				if (!confirm('@Tx.T("Users.Index.DeleteQuestion")'))
 					event.preventDefault();
 			});
 		});

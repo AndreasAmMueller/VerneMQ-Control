@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Unclassified.TxLib;
 using VerneMQ.Control.Database;
 using VerneMQ.Control.Database.Entities;
 using VerneMQ.Control.Security;
@@ -55,7 +56,7 @@ namespace VerneMQ.Control.Controllers
 			string hook = Request.Headers["vernemq-hook"].ToString();
 			var req = json.DeserializeJson<JObject>();
 
-			string username = req.Value<string>("username").Trim().ToLower();
+			string username = req.Value<string>("username")?.Trim().ToLower();
 			string password = req.Value<string>("password")?.Trim();
 
 			var user = dbContext.MqttUsers
@@ -154,8 +155,8 @@ namespace VerneMQ.Control.Controllers
 			if (authUser?.IsAdmin == true)
 				return Ok();
 
-			Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"VerneMQ HTTP Listener\"");
-			return Unauthorized($"Please sign in");
+			Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{Tx.T("Auth.Basic.Realm")}\"");
+			return Unauthorized(Tx.T("Auth.Basic.Text"));
 		}
 	}
 }

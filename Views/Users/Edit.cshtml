@@ -6,12 +6,12 @@
 
 	<div class="row g-3 mb-3">
 		<div class="col-sm">
-			<label asp-for="Username">Benutzername</label>
+			<label asp-for="Username">@Tx.T("Users.Edit.Username")</label>
 			<input asp-for="Username" class="form-control">
 			<span asp-validation-for="Username"></span>
 		</div>
 		<div class="col-sm">
-			<label asp-for="Password">Passwort</label>
+			<label asp-for="Password">@Tx.T("Users.Edit.Password")</label>
 			<div class="input-group">
 				<input asp-for="Password" class="form-control" type="password">
 				<button type="button" class="btn btn-outline-secondary toggle-password"><span class="fas fa-fw fa-eye"></span></button>
@@ -23,22 +23,22 @@
 		<div class="col-sm text-sm-center">
 			<div class="form-check form-check-inline">
 				<input asp-for="IsEnabled" class="form-check-input" type="checkbox">
-				<label asp-for="IsEnabled" class="form-check-label">Aktiv</label>
+				<label asp-for="IsEnabled" class="form-check-label">@Tx.T("Users.Edit.Enabled")</label>
 			</div>
 		</div>
 		<div class="col-sm text-sm-center">
 			<div class="form-check form-check-inline">
 				<input asp-for="IsAdmin" class="form-check-input" type="checkbox">
-				<label asp-for="IsAdmin" class="form-check-label">Administrator</label>
+				<label asp-for="IsAdmin" class="form-check-label">@Tx.T("Users.Edit.Admin")</label>
 			</div>
 		</div>
 	</div>
 
-	<button type="submit" class="btn btn-outline-primary">Speichern</button>
-	<a asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">Abbrechen</a>
+	<button type="submit" class="btn btn-outline-primary">@Tx.T("Users.Edit.Save")</button>
+	<a asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">@Tx.T("Users.Edit.Cancel")</a>
 	@if(Model.Id > 0)
 	{
-		<button type="submit" name="id" value="@Model.Id" asp-area="" asp-controller="Users" asp-action="Delete" asp-route-id="" class="btn btn-outline-danger" id="delete">Löschen</button>
+<button type="submit" name="id" value="@Model.Id" asp-area="" asp-controller="Users" asp-action="Delete" asp-route-id="" class="btn btn-outline-danger" id="delete">@Tx.T("Users.Edit.Delete")</button>
 	}
 </form>
 
@@ -46,7 +46,7 @@
 	<script type="text/javascript">
 		$(function () {
 			$('#delete').click(function (event) {
-				if (!confirm('Soll der Benutzer gelöscht werden?'))
+				if (!confirm('@Tx.T("Users.Edit.DeleteQuestion")'))
 					event.preventDefault();
 			});
 		});

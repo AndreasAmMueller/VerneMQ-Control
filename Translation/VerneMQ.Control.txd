@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- TxTranslation dictionary file. Use TxEditor to edit this file. http://unclassified.software/txtranslation -->
+<translation xml:space="preserve">
+	<culture name="de">
+		<text key="Account.Index.Cancel">Abbrechen</text>
+		<text key="Account.Index.Password">Passwort</text>
+		<text key="Account.Index.Password.Placeholder">Nur angeben, um das Passwort zu ändern</text>
+		<text key="Account.Index.Save">Speichern</text>
+		<text key="Account.Index.Title">Profil</text>
+		<text key="Account.Index.Username">Benutzername</text>
+		<text key="Account.Index.Username.Duplicate">Der Benutzername ist bereits vergeben</text>
+		<text key="Account.Index.Username.Empty">Ein Benutzername ist erforderlich</text>
+		<text key="Account.Index.ViewTitle">Profil</text>
+		<text key="Account.Login.Login">Anmelden</text>
+		<text key="Account.Login.Password">Passwort</text>
+		<text key="Account.Login.Password.Empty">Ein Passwort ist erforderlich</text>
+		<text key="Account.Login.Password.Wrong">Das Passwort ist falsch</text>
+		<text key="Account.Login.Remember">Anmeldnung merken</text>
+		<text key="Account.Login.Title">Anmelden</text>
+		<text key="Account.Login.Username">Benutzername</text>
+		<text key="Account.Login.Username.Empty">Ein Benutzername ist erforderlich</text>
+		<text key="Account.Login.Username.NotFound">Der Benutzername ist unbekannt</text>
+		<text key="Account.Login.ViewTitle">Bitte anmelden</text>
+		<text key="AppTitle">VerneMQ Control</text>
+		<text key="Auth.Basic.Realm">VerneMQ HTTP Listener</text>
+		<text key="Auth.Basic.Text">Bitte anmelden</text>
+		<text key="Error.Index.400.Description">Es wurde eine ungültige oder unvollständige Anfrage gesendet, die nicht verarbeitet werden kann.</text>
+		<text key="Error.Index.400.Title">Ungültige Anfrage</text>
+		<text key="Error.Index.401.Description">Es konnte nicht geprüft werden, ob Sie zum Zugriff auf das Dokument berechtigt sind. Bitte melden Sie sich an.</text>
+		<text key="Error.Index.401.Title">Authorisierung erforderlich</text>
+		<text key="Error.Index.403.Description">Sie verfügen nicht über die nötigen Berechtigungen, um auf das Dokument zuzugreifen.</text>
+		<text key="Error.Index.403.Title">Verboten</text>
+		<text key="Error.Index.404.Description">Das angeforderte Dokument{originalPath} wurde nicht gefunden.</text>
+		<text key="Error.Index.404.Title">Nicht gefunden</text>
+		<text key="Error.Index.405.Description">Das Dokument{originalPath} wurde mit der falschen Methode angefragt (z.B. GET statt POST).</text>
+		<text key="Error.Index.405.Title">Methode nicht erlaubt</text>
+		<text key="Error.Index.410.Description">Das angefragte Dokument ist nicht mehr verfügbar.</text>
+		<text key="Error.Index.410.Title">Vergangen</text>
+		<text key="Error.Index.500.Description">Der Server hat einen internen Fehler oder eine fehlerhafte Konfiguration festgestellt.</text>
+		<text key="Error.Index.500.Title">Interner Serverfehler</text>
+		<text key="Error.Index.Description">Es ist ein Fehler aufgetreten. Sollte dies häufiger passieren, kontaktieren Sie einen Administrator. Anfrage-ID: &lt;code&gt;{requestId}&lt;/code&gt;.</text>
+		<text key="Error.Index.Title">Fehler {id}</text>
+		<text key="Layout.Menu.Login">Anmelden</text>
+		<text key="Layout.Menu.Logout">Abmelden</text>
+		<text key="Layout.Menu.Logs">Anwendungsprotokoll</text>
+		<text key="Layout.Menu.MqttUser">MQTT Benutzer</text>
+		<text key="Layout.Menu.Profile">Profil</text>
+		<text key="Layout.Menu.Toggle">Menü ein-/ausblenden</text>
+		<text key="Layout.Menu.Users">Benutzerverwaltung</text>
+		<text key="Layout.Menu.VerneMQ">Broker Status</text>
+		<text key="Logs.Index.Close">Schließen</text>
+		<text key="Logs.Index.Details">Details</text>
+		<text key="Logs.Index.Exception">Ausnahme</text>
+		<text key="Logs.Index.Key">Schlüssel</text>
+		<text key="Logs.Index.Level">Schwere</text>
+		<text key="Logs.Index.Message">Nachricht</text>
+		<text key="Logs.Index.Properties">Eigenschaften</text>
+		<text key="Logs.Index.Time">Zeitstempel</text>
+		<text key="Logs.Index.Title">Anwendungsprotokoll</text>
+		<text key="Logs.Index.Value">Wert</text>
+		<text key="Logs.Index.ViewTitle">Anwendungsprotokoll</text>
+		<text key="MqttUser.Create.ViewTitle">Neuer MQTT Benutzer</text>
+		<text key="MqttUser.Edit.BaseTopic">Basis-Topic</text>
+		<text key="MqttUser.Edit.Cancel">Abbrechen</text>
+		<text key="MqttUser.Edit.ClientRegex">Zulässige Client-Namen</text>
+		<text key="MqttUser.Edit.Delete">Löschen</text>
+		<text key="MqttUser.Edit.DeleteQuestion">Soll der Benutzer gelöscht werden?</text>
+		<text key="MqttUser.Edit.IsEnabled">Aktiv</text>
+		<text key="MqttUser.Edit.Password">Passwort</text>
+		<text key="MqttUser.Edit.Password.Placeholder">Nur angeben, um Passwort zu ändern</text>
+		<text key="MqttUser.Edit.PermissionsText">Die Lese-/Schreibrechte gelten ab dem Basis-Topic (siehe oben).</text>
+		<text key="MqttUser.Edit.Read">lesen</text>
+		<text key="MqttUser.Edit.Rewrite">umschreiben</text>
+		<text key="MqttUser.Edit.Rewrite.Description">Wenn ein Topic nicht mit dem Basis-Topic beginnt, so füge das Basis-Topic am Anfang des gegebenen Topic ein.</text>
+		<text key="MqttUser.Edit.Save">Speichern</text>
+		<text key="MqttUser.Edit.Topic">Topic</text>
+		<text key="MqttUser.Edit.Username">Benutzername</text>
+		<text key="MqttUser.Edit.Username.Duplicate">Der Benutzername ist bereits vergeben</text>
+		<text key="MqttUser.Edit.Username.Empty">Ein Benutzername ist erforderlich</text>
+		<text key="MqttUser.Edit.ViewTitle">MQTT Benutzer bearbeiten</text>
+		<text key="MqttUser.Edit.Write">schreiben</text>
+		<text key="MqttUser.Index.BaseTopic">Basis-Topic</text>
+		<text key="MqttUser.Index.ClientRegex">Client-RegEx</text>
+		<text key="MqttUser.Index.DeleteQuestion">Soll der Benutzer gelöscht werden?</text>
+		<text key="MqttUser.Index.Enabled">Aktiv</text>
+		<text key="MqttUser.Index.Title">MQTT Benutzer</text>
+		<text key="MqttUser.Index.Username">Benutzername</text>
+		<text key="MqttUser.Index.ViewTitle">MQTT Benutzer</text>
+		<text key="Startup.InitError">Bei der Initialisierung der Anwendung ist ein Fehler aufgetreten. Weitere Details können dem Log entnommen werden.
+
+Version: {version} | Serverzeit: {time}</text>
+		<text key="Tx:date.day">d.</text>
+		<text key="Tx:date.day.tab">dd.</text>
+		<text key="Tx:date.month.abbr">MMM.</text>
+		<text key="Tx:date.month day">d.M.</text>
+		<text key="Tx:date.month day.abbr">d. MMM.</text>
+		<text key="Tx:date.month day.long">d. MMMM</text>
+		<text key="Tx:date.month day.tab">dd.MM.</text>
+		<text key="Tx:date.year month">M'/'yyyy</text>
+		<text key="Tx:date.year month.abbr">MMM. yyyy</text>
+		<text key="Tx:date.year month.tab">MM'/'yyyy</text>
+		<text key="Tx:date.year month day">d.M.yyyy</text>
+		<text key="Tx:date.year month day.abbr">d. MMM. yyyy</text>
+		<text key="Tx:date.year month day.long">d. MMMM yyyy</text>
+		<text key="Tx:date.year month day.tab">dd.MM.yyyy</text>
+		<text key="Tx:enum.and.combiner">, </text>
+		<text key="Tx:enum.and.last combiner"> und </text>
+		<text key="Tx:enum.or.combiner">, </text>
+		<text key="Tx:enum.or.last combiner"> oder </text>
+		<text key="Tx:number.group separator"> </text>
+		<text key="Tx:number.group separator threshold">10000</text>
+		<text key="Tx:number.negative">−</text>
+		<text key="Tx:number.ordinal">{#}.</text>
+		<text key="Tx:number.unit separator"> </text>
+		<text key="Tx:quote begin">„</text>
+		<text key="Tx:quote end">“</text>
+		<text key="Tx:quote nested begin">‚</text>
+		<text key="Tx:quote nested end">‘</text>
+		<text key="Tx:time.hour">H "Uhr"</text>
+		<text key="Tx:time.hour.tab">HH "Uhr"</text>
+		<text key="Tx:time.hour minute">HH:mm</text>
+		<text key="Tx:time.hour minute.tab">HH:mm</text>
+		<text key="Tx:time.hour minute second">HH:mm:ss</text>
+		<text key="Tx:time.hour minute second.tab">HH:mm:ss</text>
+		<text key="Tx:time.hour minute second ms">HH:mm:ss.fff</text>
+		<text key="Tx:time.hour minute second ms.tab">HH:mm:ss.fff</text>
+		<text key="Tx:time.never">nie</text>
+		<text key="Tx:time.now">jetzt</text>
+		<text key="Tx:time.relative">in {interval}</text>
+		<text key="Tx:time.relative.days">{#} Tagen</text>
+		<text key="Tx:time.relative.days" count="1">{#} Tag</text>
+		<text key="Tx:time.relative.days.single">{#} Tagen</text>
+		<text key="Tx:time.relative.days.single" count="1">einem Tag</text>
+		<text key="Tx:time.relative.hours">{#} Stunden</text>
+		<text key="Tx:time.relative.hours" count="1">{#} Stunde</text>
+		<text key="Tx:time.relative.hours.single">{#} Stunden</text>
+		<text key="Tx:time.relative.hours.single" count="1">einer Stunde</text>
+		<text key="Tx:time.relative.minutes">{#} Minuten</text>
+		<text key="Tx:time.relative.minutes" count="1">{#} Minute</text>
+		<text key="Tx:time.relative.minutes.single">{#} Minuten</text>
+		<text key="Tx:time.relative.minutes.single" count="1">einer Minute</text>
+		<text key="Tx:time.relative.months">{#} Monaten</text>
+		<text key="Tx:time.relative.months" count="1">{#} Monat</text>
+		<text key="Tx:time.relative.months.single">{#} Monaten</text>
+		<text key="Tx:time.relative.months.single" count="1">einem Monat</text>
+		<text key="Tx:time.relative.seconds">{#} Sekunden</text>
+		<text key="Tx:time.relative.seconds" count="1">{#} Sekunde</text>
+		<text key="Tx:time.relative.seconds.single">{#} Sekunden</text>
+		<text key="Tx:time.relative.seconds.single" count="1">einer Sekunde</text>
+		<text key="Tx:time.relative.years">{#} Jahren</text>
+		<text key="Tx:time.relative.years" count="1">{#} Jahr</text>
+		<text key="Tx:time.relative.years.single">{#} Jahren</text>
+		<text key="Tx:time.relative.years.single" count="1">einem Jahr</text>
+		<text key="Tx:time.relative neg">vor {interval}</text>
+		<text key="Tx:time.relative neg.days">{#} Tagen</text>
+		<text key="Tx:time.relative neg.days" count="1">{#} Tag</text>
+		<text key="Tx:time.relative neg.days.single">{#} Tagen</text>
+		<text key="Tx:time.relative neg.days.single" count="1">einem Tag</text>
+		<text key="Tx:time.relative neg.hours">{#} Stunden</text>
+		<text key="Tx:time.relative neg.hours" count="1">{#} Stunde</text>
+		<text key="Tx:time.relative neg.hours.single">{#} Stunden</text>
+		<text key="Tx:time.relative neg.hours.single" count="1">einer Stunde</text>
+		<text key="Tx:time.relative neg.minutes">{#} Minuten</text>
+		<text key="Tx:time.relative neg.minutes" count="1">{#} Minute</text>
+		<text key="Tx:time.relative neg.minutes.single">{#} Minuten</text>
+		<text key="Tx:time.relative neg.minutes.single" count="1">einer Minute</text>
+		<text key="Tx:time.relative neg.months">{#} Monaten</text>
+		<text key="Tx:time.relative neg.months" count="1">{#} Monat</text>
+		<text key="Tx:time.relative neg.months.single">{#} Monaten</text>
+		<text key="Tx:time.relative neg.months.single" count="1">einem Monat</text>
+		<text key="Tx:time.relative neg.seconds">{#} Sekunden</text>
+		<text key="Tx:time.relative neg.seconds" count="1">{#} Sekunde</text>
+		<text key="Tx:time.relative neg.seconds.single">{#} Sekunden</text>
+		<text key="Tx:time.relative neg.seconds.single" count="1">einer Sekunde</text>
+		<text key="Tx:time.relative neg.years">{#} Jahren</text>
+		<text key="Tx:time.relative neg.years" count="1">{#} Jahr</text>
+		<text key="Tx:time.relative neg.years.single">{#} Jahren</text>
+		<text key="Tx:time.relative neg.years.single" count="1">einem Jahr</text>
+		<text key="Tx:time.relative span">{interval} später</text>
+		<text key="Tx:time.relative span.days">{#} Tage</text>
+		<text key="Tx:time.relative span.days" count="1">{#} Tag</text>
+		<text key="Tx:time.relative span.days.single">{#} Tage</text>
+		<text key="Tx:time.relative span.days.single" count="1">einen Tag</text>
+		<text key="Tx:time.relative span.hours">{#} Stunden</text>
+		<text key="Tx:time.relative span.hours" count="1">{#} Stunde</text>
+		<text key="Tx:time.relative span.hours.single">{#} Stunden</text>
+		<text key="Tx:time.relative span.hours.single" count="1">eine Stunde</text>
+		<text key="Tx:time.relative span.minutes">{#} Minuten</text>
+		<text key="Tx:time.relative span.minutes" count="1">{#} Minute</text>
+		<text key="Tx:time.relative span.minutes.single">{#} Minuten</text>
+		<text key="Tx:time.relative span.minutes.single" count="1">eine Minute</text>
+		<text key="Tx:time.relative span.months">{#} Monate</text>
+		<text key="Tx:time.relative span.months" count="1">{#} Monat</text>
+		<text key="Tx:time.relative span.months.single">{#} Monate</text>
+		<text key="Tx:time.relative span.months.single" count="1">einen Monat</text>
+		<text key="Tx:time.relative span.seconds">{#} Sekunden</text>
+		<text key="Tx:time.relative span.seconds" count="1">{#} Sekunde</text>
+		<text key="Tx:time.relative span.seconds.single">{#} Sekunden</text>
+		<text key="Tx:time.relative span.seconds.single" count="1">eine Sekunde</text>
+		<text key="Tx:time.relative span.years">{#} Jahre</text>
+		<text key="Tx:time.relative span.years" count="1">{#} Jahr</text>
+		<text key="Tx:time.relative span.years.single">{#} Jahre</text>
+		<text key="Tx:time.relative span.years.single" count="1">ein Jahr</text>
+		<text key="Tx:time.relative span neg">{interval} vorher</text>
+		<text key="Tx:time.relative span neg.days">{#} Tage</text>
+		<text key="Tx:time.relative span neg.days" count="1">{#} Tag</text>
+		<text key="Tx:time.relative span neg.days.single">{#} Tage</text>
+		<text key="Tx:time.relative span neg.days.single" count="1">einen Tag</text>
+		<text key="Tx:time.relative span neg.hours">{#} Stunden</text>
+		<text key="Tx:time.relative span neg.hours" count="1">{#} Stunde</text>
+		<text key="Tx:time.relative span neg.hours.single">{#} Stunden</text>
+		<text key="Tx:time.relative span neg.hours.single" count="1">eine Stunde</text>
+		<text key="Tx:time.relative span neg.minutes">{#} Minuten</text>
+		<text key="Tx:time.relative span neg.minutes" count="1">{#} Minute</text>
+		<text key="Tx:time.relative span neg.minutes.single">{#} Minuten</text>
+		<text key="Tx:time.relative span neg.minutes.single" count="1">eine Minute</text>
+		<text key="Tx:time.relative span neg.months">{#} Monate</text>
+		<text key="Tx:time.relative span neg.months" count="1">{#} Monat</text>
+		<text key="Tx:time.relative span neg.months.single">{#} Monate</text>
+		<text key="Tx:time.relative span neg.months.single" count="1">einen Monat</text>
+		<text key="Tx:time.relative span neg.seconds">{#} Sekunden</text>
+		<text key="Tx:time.relative span neg.seconds" count="1">{#} Sekunde</text>
+		<text key="Tx:time.relative span neg.seconds.single">{#} Sekunden</text>
+		<text key="Tx:time.relative span neg.seconds.single" count="1">eine Sekunde</text>
+		<text key="Tx:time.relative span neg.years">{#} Jahre</text>
+		<text key="Tx:time.relative span neg.years" count="1">{#} Jahr</text>
+		<text key="Tx:time.relative span neg.years.single">{#} Jahre</text>
+		<text key="Tx:time.relative span neg.years.single" count="1">ein Jahr</text>
+		<text key="Tx:time.span">für {interval}</text>
+		<text key="Tx:time.span.days">{#} Tage</text>
+		<text key="Tx:time.span.days" count="1">{#} Tag</text>
+		<text key="Tx:time.span.days.single">{#} Tage</text>
+		<text key="Tx:time.span.days.single" count="1">einen Tag</text>
+		<text key="Tx:time.span.hours">{#} Stunden</text>
+		<text key="Tx:time.span.hours" count="1">{#} Stunde</text>
+		<text key="Tx:time.span.hours.single">{#} Stunden</text>
+		<text key="Tx:time.span.hours.single" count="1">eine Stunde</text>
+		<text key="Tx:time.span.minutes">{#} Minuten</text>
+		<text key="Tx:time.span.minutes" count="1">{#} Minute</text>
+		<text key="Tx:time.span.minutes.single">{#} Minuten</text>
+		<text key="Tx:time.span.minutes.single" count="1">eine Minute</text>
+		<text key="Tx:time.span.months">{#} Monate</text>
+		<text key="Tx:time.span.months" count="1">{#} Monat</text>
+		<text key="Tx:time.span.months.single">{#} Monate</text>
+		<text key="Tx:time.span.months.single" count="1">einen Monat</text>
+		<text key="Tx:time.span.seconds">{#} Sekunden</text>
+		<text key="Tx:time.span.seconds" count="1">{#} Sekunde</text>
+		<text key="Tx:time.span.seconds.single">{#} Sekunden</text>
+		<text key="Tx:time.span.seconds.single" count="1">eine Sekunde</text>
+		<text key="Tx:time.span.years">{#} Jahre</text>
+		<text key="Tx:time.span.years" count="1">{#} Jahr</text>
+		<text key="Tx:time.span.years.single">{#} Jahre</text>
+		<text key="Tx:time.span.years.single" count="1">ein Jahr</text>
+		<text key="Tx:time.span neg">seit {interval}</text>
+		<text key="Tx:time.span neg.days">{#} Tagen</text>
+		<text key="Tx:time.span neg.days" count="1">{#} Tag</text>
+		<text key="Tx:time.span neg.days.single">{#} Tagen</text>
+		<text key="Tx:time.span neg.days.single" count="1">einem Tag</text>
+		<text key="Tx:time.span neg.hours">{#} Stunden</text>
+		<text key="Tx:time.span neg.hours" count="1">{#} Stunde</text>
+		<text key="Tx:time.span neg.hours.single">{#} Stunden</text>
+		<text key="Tx:time.span neg.hours.single" count="1">einer Stunde</text>
+		<text key="Tx:time.span neg.minutes">{#} Minuten</text>
+		<text key="Tx:time.span neg.minutes" count="1">{#} Minute</text>
+		<text key="Tx:time.span neg.minutes.single">{#} Minuten</text>
+		<text key="Tx:time.span neg.minutes.single" count="1">einer Minute</text>
+		<text key="Tx:time.span neg.months">{#} Monaten</text>
+		<text key="Tx:time.span neg.months" count="1">{#} Monat</text>
+		<text key="Tx:time.span neg.months.single">{#} Monaten</text>
+		<text key="Tx:time.span neg.months.single" count="1">einem Monat</text>
+		<text key="Tx:time.span neg.seconds">{#} Sekunden</text>
+		<text key="Tx:time.span neg.seconds" count="1">{#} Sekunde</text>
+		<text key="Tx:time.span neg.seconds.single">{#} Sekunden</text>
+		<text key="Tx:time.span neg.seconds.single" count="1">einer Sekunde</text>
+		<text key="Tx:time.span neg.years">{#} Jahren</text>
+		<text key="Tx:time.span neg.years" count="1">{#} Jahr</text>
+		<text key="Tx:time.span neg.years.single">{#} Jahren</text>
+		<text key="Tx:time.span neg.years.single" count="1">einem Jahr</text>
+		<text key="Users.Create.ViewTitle">Neuer Benutzer</text>
+		<text key="Users.Edit.Admin">Administrator</text>
+		<text key="Users.Edit.Cancel">Abbrechen</text>
+		<text key="Users.Edit.Delete">Löschen</text>
+		<text key="Users.Edit.DeleteQuestion">Soll der Benutzer gelöscht werden?</text>
+		<text key="Users.Edit.Enabled">Aktiv</text>
+		<text key="Users.Edit.Password">Passwort</text>
+		<text key="Users.Edit.Save">Speichern</text>
+		<text key="Users.Edit.Username">Benuztername</text>
+		<text key="Users.Edit.Username.Duplicate">Der Benutzername ist bereits vergeben</text>
+		<text key="Users.Edit.Username.Empty">Ein Benutzername ist erforderlich</text>
+		<text key="Users.Edit.ViewTitle">Benutzer bearbeiten</text>
+		<text key="Users.Index.Admin">Admin</text>
+		<text key="Users.Index.DeleteQuestion">Soll der Benutzer gelöscht werden?</text>
+		<text key="Users.Index.Enabled">Atkiv</text>
+		<text key="Users.Index.Title">Benutzerverwaltung</text>
+		<text key="Users.Index.Username">Benutzername</text>
+		<text key="Users.Index.ViewTitle">Benutzerverwaltung</text>
+		<text key="VerneMQ.Index.Clients.Address">IP Adresse</text>
+		<text key="VerneMQ.Index.Clients.Clean">Sauberer Start</text>
+		<text key="VerneMQ.Index.Clients.ID">Client-ID</text>
+		<text key="VerneMQ.Index.Clients.Port">Port</text>
+		<text key="VerneMQ.Index.Clients.Protocol">Protokollversion</text>
+		<text key="VerneMQ.Index.Clients.SessionStart">Verbunden seit</text>
+		<text key="VerneMQ.Index.Clients.State">Status</text>
+		<text key="VerneMQ.Index.Clients.User">Benutzer</text>
+		<text key="VerneMQ.Index.ClientsOnline">Clients online</text>
+		<text key="VerneMQ.Index.Cluster.Dropped">Durch Cluster verworfen</text>
+		<text key="VerneMQ.Index.Cluster.Received">Von Cluster erhalten</text>
+		<text key="VerneMQ.Index.Cluster.Sent">An Cluster gesendet</text>
+		<text key="VerneMQ.Index.Data.Received">Daten empfangen</text>
+		<text key="VerneMQ.Index.Data.Sent">Daten gesendet</text>
+		<text key="VerneMQ.Index.Memory">Arbeitsspeicher</text>
+		<text key="VerneMQ.Index.Messages.Dropped">Nachrichten verworfen (Warteschlange)</text>
+		<text key="VerneMQ.Index.Messages.Queued">Nachrichten in Warteschlange</text>
+		<text key="VerneMQ.Index.Messages.Received">Nachrichten empfangen</text>
+		<text key="VerneMQ.Index.Messages.Retained">Nachrichten gespeichert</text>
+		<text key="VerneMQ.Index.Messages.Sent">Nachrichten gesendet</text>
+		<text key="VerneMQ.Index.Subscriptions">Subscriptions</text>
+		<text key="VerneMQ.Index.Uptime">Laufzeit</text>
+		<text key="VerneMQ.Index.ViewTitle">VerneMQ Broker</text>
+	</culture>
+	<culture name="en" primary="true">
+		<text key="Account.Index.Cancel">Cancel</text>
+		<text key="Account.Index.Password">Password</text>
+		<text key="Account.Index.Password.Placeholder">Only type in to change the password</text>
+		<text key="Account.Index.Save">Save</text>
+		<text key="Account.Index.Title">Profile</text>
+		<text key="Account.Index.Username">Username</text>
+		<text key="Account.Index.Username.Duplicate">The username is already taken</text>
+		<text key="Account.Index.Username.Empty">A username is required</text>
+		<text key="Account.Index.ViewTitle">Profile</text>
+		<text key="Account.Login.Login">Sign In</text>
+		<text key="Account.Login.Password">Password</text>
+		<text key="Account.Login.Password.Empty">A password is required</text>
+		<text key="Account.Login.Password.Wrong">The password is wrong</text>
+		<text key="Account.Login.Remember">Remember sign in</text>
+		<text key="Account.Login.Title">Sign-In</text>
+		<text key="Account.Login.Username">Username</text>
+		<text key="Account.Login.Username.Empty">A username is required</text>
+		<text key="Account.Login.Username.NotFound">The username is unknown</text>
+		<text key="Account.Login.ViewTitle">Please sign in</text>
+		<text key="AppTitle">VerneMQ Control</text>
+		<text key="Auth.Basic.Realm">VerneMQ HTTP Listener</text>
+		<text key="Auth.Basic.Text">Please sign-in</text>
+		<text key="Error.Index.400.Description">You have sent an invalid or incomplete request that cannot be processed.</text>
+		<text key="Error.Index.400.Title">bad request</text>
+		<text key="Error.Index.401.Description">It could not be checked whether you are authorized to access the document. Please sign in.</text>
+		<text key="Error.Index.401.Title">unauthorized</text>
+		<text key="Error.Index.403.Description">You do not have the necessary permissions to access the document.</text>
+		<text key="Error.Index.403.Title">forbidden</text>
+		<text key="Error.Index.404.Description">The requested document{originalPath} was not found.</text>
+		<text key="Error.Index.404.Title">not found</text>
+		<text key="Error.Index.405.Description">The document{originalPath} was requested using the wrong method (e.g. GET instead of POST).</text>
+		<text key="Error.Index.405.Title">method not allowed</text>
+		<text key="Error.Index.410.Description">The requested document is no longer available.</text>
+		<text key="Error.Index.410.Title">gone</text>
+		<text key="Error.Index.500.Description">The server has encountered an internal error or a bad configuration.</text>
+		<text key="Error.Index.500.Title">internal server error</text>
+		<text key="Error.Index.Description">An error occurred. If that happens more frequently, please contact the administratior.
+Request-ID: &lt;code&gt;{requestId}&lt;/code&gt;.</text>
+		<text key="Error.Index.Title">Error {id}</text>
+		<text key="Layout.Menu.Login">Sign In</text>
+		<text key="Layout.Menu.Logout">Sign Out</text>
+		<text key="Layout.Menu.Logs">Application Protocol</text>
+		<text key="Layout.Menu.MqttUser">MQTT Users</text>
+		<text key="Layout.Menu.Profile">Profile</text>
+		<text key="Layout.Menu.Toggle">Toggle navigation</text>
+		<text key="Layout.Menu.Users">Manage Users</text>
+		<text key="Layout.Menu.VerneMQ">Broker Status</text>
+		<text key="Logs.Index.Close">Close</text>
+		<text key="Logs.Index.Details">Details</text>
+		<text key="Logs.Index.Exception">Exception</text>
+		<text key="Logs.Index.Key">Key</text>
+		<text key="Logs.Index.Level">Level</text>
+		<text key="Logs.Index.Message">Message</text>
+		<text key="Logs.Index.Properties">Properties</text>
+		<text key="Logs.Index.Time">Timestamp</text>
+		<text key="Logs.Index.Title">Application Protocol</text>
+		<text key="Logs.Index.Value">Value</text>
+		<text key="Logs.Index.ViewTitle">Application Protocol</text>
+		<text key="MqttUser.Create.ViewTitle">Create MQTT user</text>
+		<text key="MqttUser.Edit.BaseTopic">Base-Topic</text>
+		<text key="MqttUser.Edit.Cancel">Cancel</text>
+		<text key="MqttUser.Edit.ClientRegex">Valid client names</text>
+		<text key="MqttUser.Edit.Delete">Delete</text>
+		<text key="MqttUser.Edit.DeleteQuestion">Should the user be deleted?</text>
+		<text key="MqttUser.Edit.IsEnabled">Enabled</text>
+		<text key="MqttUser.Edit.Password">Password</text>
+		<text key="MqttUser.Edit.Password.Placeholder">Only type in to change the password</text>
+		<text key="MqttUser.Edit.PermissionsText">The read/write permissions have the base topic prepended (see above).</text>
+		<text key="MqttUser.Edit.Read">read</text>
+		<text key="MqttUser.Edit.Rewrite">rewrite</text>
+		<text key="MqttUser.Edit.Rewrite.Description">When a topic does not start with the base topic, the base topic is prepended to the given topic.</text>
+		<text key="MqttUser.Edit.Save">Save</text>
+		<text key="MqttUser.Edit.Topic">Topic</text>
+		<text key="MqttUser.Edit.Username">Username</text>
+		<text key="MqttUser.Edit.Username.Duplicate">The username is already taken</text>
+		<text key="MqttUser.Edit.Username.Empty">A username is required</text>
+		<text key="MqttUser.Edit.ViewTitle">Edit MQTT user</text>
+		<text key="MqttUser.Edit.Write">write</text>
+		<text key="MqttUser.Index.BaseTopic">Base Topic</text>
+		<text key="MqttUser.Index.ClientRegex">Client-RegEx</text>
+		<text key="MqttUser.Index.DeleteQuestion">Should the user be deleted?</text>
+		<text key="MqttUser.Index.Enabled">Enabled</text>
+		<text key="MqttUser.Index.Title">MQTT Users</text>
+		<text key="MqttUser.Index.Username">Username</text>
+		<text key="MqttUser.Index.ViewTitle">MQTT Users</text>
+		<text key="Startup.InitError">An error occurred on application initialization. Further details can be seen in the log.
+
+Version: {version} | Server time: {time}</text>
+		<text key="Tx:byte unit" comment="Default: B" />
+		<text key="Tx:colon" comment="Can be used to insert additional spacing like for French." />
+		<text key="Tx:date.day" comment="Default: %d" />
+		<text key="Tx:date.day.tab" comment="Default: dd" />
+		<text key="Tx:date.dow with date" comment="Combines a day of week with a date. Default: {dow}, {date}" />
+		<text key="Tx:date.month.abbr" comment="Default: MMM" />
+		<text key="Tx:date.month.long" comment="Default: MMMM" />
+		<text key="Tx:date.month day" comment="Default: MM-dd">d/M</text>
+		<text key="Tx:date.month day.abbr" comment="Default: d MMM">d MMM</text>
+		<text key="Tx:date.month day.long" comment="Default: M">d MMMM</text>
+		<text key="Tx:date.month day.tab" comment="Default: MM-dd">dd/MM</text>
+		<text key="Tx:date.year" comment="Default: yyyy" />
+		<text key="Tx:date.year month" comment="Default: yyyy-MM">M/yyyy</text>
+		<text key="Tx:date.year month.abbr" comment="Default: MMM yyyy">MMM yyyy</text>
+		<text key="Tx:date.year month.long" comment="Default: Y" />
+		<text key="Tx:date.year month.tab" comment="Default: yyyy-MM">MM/yyyy</text>
+		<text key="Tx:date.year month day" comment="Default: d">d/M/yyyy</text>
+		<text key="Tx:date.year month day.abbr" comment="Default: d MMM yyyy">d MMM yyyy</text>
+		<text key="Tx:date.year month day.long" comment="Default: d MMMM yyyy">d MMMM yyyy</text>
+		<text key="Tx:date.year month day.tab" comment="Default: d">dd/MM/yyyy</text>
+		<text key="Tx:enum.and.combiner">, </text>
+		<text key="Tx:enum.and.last combiner"> and </text>
+		<text key="Tx:enum.or.combiner">, </text>
+		<text key="Tx:enum.or.last combiner"> or </text>
+		<text key="Tx:number.group separator" comment="Number thousands group separator. International recommendation is a narrow non-breaking space."> </text>
+		<text key="Tx:number.group separator threshold" comment="The minimum value for thousands group separators to be used at all.">1</text>
+		<text key="Tx:number.negative" comment="Negative number prefix.">−</text>
+		<text key="Tx:number.ordinal" comment="Ordinal numbers, male or default.">{#}th</text>
+		<text key="Tx:number.ordinal" count="1" mod="10">{#}st</text>
+		<text key="Tx:number.ordinal" count="2" mod="10">{#}nd</text>
+		<text key="Tx:number.ordinal" count="3" mod="10">{#}rd</text>
+		<text key="Tx:number.ordinal" count="11" mod="100">{#}th</text>
+		<text key="Tx:number.ordinal" count="12" mod="100">{#}th</text>
+		<text key="Tx:number.ordinal" count="13" mod="100">{#}th</text>
+		<text key="Tx:number.ordinal f" comment="Ordinal numbers, female if special." />
+		<text key="Tx:number.unit separator" comment="Separator between a number and its unit. Should be a non-breaking space. Should only be used for relatively short unit symbols, not longer names."> </text>
+		<text key="Tx:quote begin" comment="Opening regular quotation mark.">“</text>
+		<text key="Tx:quote end" comment="Closing regular quotation mark.">”</text>
+		<text key="Tx:quote nested begin" comment="Opening nested/secondary quotation mark.">‘</text>
+		<text key="Tx:quote nested end" comment="Closing nested/secondary quotation mark.">’</text>
+		<text key="Tx:time.am" comment="a.m. (ante meridiem), used for 12-hour clocks.">am</text>
+		<text key="Tx:time.hour" comment="Default: %H">h tt</text>
+		<text key="Tx:time.hour.tab" comment="Default: HH">hh tt</text>
+		<text key="Tx:time.hour minute" comment="Default: t">h:mm a</text>
+		<text key="Tx:time.hour minute.tab" comment="Default: t">HH:mm</text>
+		<text key="Tx:time.hour minute second" comment="Default: T">h:mm:ss tt</text>
+		<text key="Tx:time.hour minute second.tab" comment="Default: T">HH:mm:ss</text>
+		<text key="Tx:time.hour minute second ms" comment="Default: H:mm:ss.fff">h:mm:ss.fff tt</text>
+		<text key="Tx:time.hour minute second ms.tab" comment="Default: HH:mm:ss.fff">HH:mm:ss.fff</text>
+		<text key="Tx:time.never" comment="No point in time.">never</text>
+		<text key="Tx:time.now" comment="At the current time.">now</text>
+		<text key="Tx:time.pm" comment="p.m. (post meridiem), used for 12-hour clocks.">pm</text>
+		<text key="Tx:time.relative" comment="A point in time in the future.">in {interval}</text>
+		<text key="Tx:time.relative.days">{#} days</text>
+		<text key="Tx:time.relative.days" count="1">{#} day</text>
+		<text key="Tx:time.relative.days.single">{#} days</text>
+		<text key="Tx:time.relative.days.single" count="1">a day</text>
+		<text key="Tx:time.relative.hours">{#} hours</text>
+		<text key="Tx:time.relative.hours" count="1">{#} hour</text>
+		<text key="Tx:time.relative.hours.single">{#} hours</text>
+		<text key="Tx:time.relative.hours.single" count="1">an hour</text>
+		<text key="Tx:time.relative.minutes">{#} minutes</text>
+		<text key="Tx:time.relative.minutes" count="1">{#} minute</text>
+		<text key="Tx:time.relative.minutes.single">{#} minutes</text>
+		<text key="Tx:time.relative.minutes.single" count="1">a minute</text>
+		<text key="Tx:time.relative.months">{#} months</text>
+		<text key="Tx:time.relative.months" count="1">{#} month</text>
+		<text key="Tx:time.relative.months.single">{#} months</text>
+		<text key="Tx:time.relative.months.single" count="1">a month</text>
+		<text key="Tx:time.relative.seconds">{#} seconds</text>
+		<text key="Tx:time.relative.seconds" count="1">{#} second</text>
+		<text key="Tx:time.relative.seconds.single">{#} seconds</text>
+		<text key="Tx:time.relative.seconds.single" count="1">a second</text>
+		<text key="Tx:time.relative.years">{#} years</text>
+		<text key="Tx:time.relative.years" count="1">{#} year</text>
+		<text key="Tx:time.relative.years.single">{#} years</text>
+		<text key="Tx:time.relative.years.single" count="1">a year</text>
+		<text key="Tx:time.relative neg" comment="A point in time in the past.">{interval} ago</text>
+		<text key="Tx:time.relative neg.days">{#} days</text>
+		<text key="Tx:time.relative neg.days" count="1">{#} day</text>
+		<text key="Tx:time.relative neg.days.single">{#} days</text>
+		<text key="Tx:time.relative neg.days.single" count="1">a day</text>
+		<text key="Tx:time.relative neg.hours">{#} hours</text>
+		<text key="Tx:time.relative neg.hours" count="1">{#} hour</text>
+		<text key="Tx:time.relative neg.hours.single">{#} hours</text>
+		<text key="Tx:time.relative neg.hours.single" count="1">an hour</text>
+		<text key="Tx:time.relative neg.minutes">{#} minutes</text>
+		<text key="Tx:time.relative neg.minutes" count="1">{#} minute</text>
+		<text key="Tx:time.relative neg.minutes.single">{#} minutes</text>
+		<text key="Tx:time.relative neg.minutes.single" count="1">a minute</text>
+		<text key="Tx:time.relative neg.months">{#} months</text>
+		<text key="Tx:time.relative neg.months" count="1">{#} month</text>
+		<text key="Tx:time.relative neg.months.single">{#} months</text>
+		<text key="Tx:time.relative neg.months.single" count="1">a month</text>
+		<text key="Tx:time.relative neg.seconds">{#} seconds</text>
+		<text key="Tx:time.relative neg.seconds" count="1">{#} second</text>
+		<text key="Tx:time.relative neg.seconds.single">{#} seconds</text>
+		<text key="Tx:time.relative neg.seconds.single" count="1">a second</text>
+		<text key="Tx:time.relative neg.years">{#} years</text>
+		<text key="Tx:time.relative neg.years" count="1">{#} year</text>
+		<text key="Tx:time.relative neg.years.single">{#} years</text>
+		<text key="Tx:time.relative neg.years.single" count="1">a year</text>
+		<text key="Tx:time.relative span" comment="A point in time after another unspecified time.">{interval} later</text>
+		<text key="Tx:time.relative span.days">{#} days</text>
+		<text key="Tx:time.relative span.days" count="1">{#} day</text>
+		<text key="Tx:time.relative span.days.single">{#} days</text>
+		<text key="Tx:time.relative span.days.single" count="1">a day</text>
+		<text key="Tx:time.relative span.hours">{#} hours</text>
+		<text key="Tx:time.relative span.hours" count="1">{#} hour</text>
+		<text key="Tx:time.relative span.hours.single">{#} hours</text>
+		<text key="Tx:time.relative span.hours.single" count="1">an hour</text>
+		<text key="Tx:time.relative span.minutes">{#} minutes</text>
+		<text key="Tx:time.relative span.minutes" count="1">{#} minute</text>
+		<text key="Tx:time.relative span.minutes.single">{#} minutes</text>
+		<text key="Tx:time.relative span.minutes.single" count="1">a minute</text>
+		<text key="Tx:time.relative span.months">{#} months</text>
+		<text key="Tx:time.relative span.months" count="1">{#} month</text>
+		<text key="Tx:time.relative span.months.single">{#} months</text>
+		<text key="Tx:time.relative span.months.single" count="1">a month</text>
+		<text key="Tx:time.relative span.seconds">{#} seconds</text>
+		<text key="Tx:time.relative span.seconds" count="1">{#} second</text>
+		<text key="Tx:time.relative span.seconds.single">{#} seconds</text>
+		<text key="Tx:time.relative span.seconds.single" count="1">a second</text>
+		<text key="Tx:time.relative span.years">{#} years</text>
+		<text key="Tx:time.relative span.years" count="1">{#} year</text>
+		<text key="Tx:time.relative span.years.single">{#} years</text>
+		<text key="Tx:time.relative span.years.single" count="1">a year</text>
+		<text key="Tx:time.relative span neg" comment="A point in time before another unspecified time.">{interval} before</text>
+		<text key="Tx:time.relative span neg.days">{#} days</text>
+		<text key="Tx:time.relative span neg.days" count="1">{#} day</text>
+		<text key="Tx:time.relative span neg.days.single">{#} days</text>
+		<text key="Tx:time.relative span neg.days.single" count="1">a day</text>
+		<text key="Tx:time.relative span neg.hours">{#} hours</text>
+		<text key="Tx:time.relative span neg.hours" count="1">{#} hour</text>
+		<text key="Tx:time.relative span neg.hours.single">{#} hours</text>
+		<text key="Tx:time.relative span neg.hours.single" count="1">an hour</text>
+		<text key="Tx:time.relative span neg.minutes">{#} minutes</text>
+		<text key="Tx:time.relative span neg.minutes" count="1">{#} minute</text>
+		<text key="Tx:time.relative span neg.minutes.single">{#} minutes</text>
+		<text key="Tx:time.relative span neg.minutes.single" count="1">a minute</text>
+		<text key="Tx:time.relative span neg.months">{#} months</text>
+		<text key="Tx:time.relative span neg.months" count="1">{#} month</text>
+		<text key="Tx:time.relative span neg.months.single">{#} months</text>
+		<text key="Tx:time.relative span neg.months.single" count="1">a month</text>
+		<text key="Tx:time.relative span neg.seconds">{#} seconds</text>
+		<text key="Tx:time.relative span neg.seconds" count="1">{#} second</text>
+		<text key="Tx:time.relative span neg.seconds.single">{#} seconds</text>
+		<text key="Tx:time.relative span neg.seconds.single" count="1">a second</text>
+		<text key="Tx:time.relative span neg.years">{#} years</text>
+		<text key="Tx:time.relative span neg.years" count="1">{#} year</text>
+		<text key="Tx:time.relative span neg.years.single">{#} years</text>
+		<text key="Tx:time.relative span neg.years.single" count="1">a year</text>
+		<text key="Tx:time.span" comment="A time span from now on into the future or based at an unspecified time.">for {interval}</text>
+		<text key="Tx:time.span.days">{#} days</text>
+		<text key="Tx:time.span.days" count="1">{#} day</text>
+		<text key="Tx:time.span.days.single">{#} days</text>
+		<text key="Tx:time.span.days.single" count="1">a day</text>
+		<text key="Tx:time.span.hours">{#} hours</text>
+		<text key="Tx:time.span.hours" count="1">{#} hour</text>
+		<text key="Tx:time.span.hours.single">{#} hours</text>
+		<text key="Tx:time.span.hours.single" count="1">an hour</text>
+		<text key="Tx:time.span.minutes">{#} minutes</text>
+		<text key="Tx:time.span.minutes" count="1">{#} minute</text>
+		<text key="Tx:time.span.minutes.single">{#} minutes</text>
+		<text key="Tx:time.span.minutes.single" count="1">a minute</text>
+		<text key="Tx:time.span.months">{#} months</text>
+		<text key="Tx:time.span.months" count="1">{#} month</text>
+		<text key="Tx:time.span.months.single">{#} months</text>
+		<text key="Tx:time.span.months.single" count="1">a month</text>
+		<text key="Tx:time.span.seconds">{#} seconds</text>
+		<text key="Tx:time.span.seconds" count="1">{#} second</text>
+		<text key="Tx:time.span.seconds.single">{#} seconds</text>
+		<text key="Tx:time.span.seconds.single" count="1">a second</text>
+		<text key="Tx:time.span.years">{#} years</text>
+		<text key="Tx:time.span.years" count="1">{#} year</text>
+		<text key="Tx:time.span.years.single">{#} years</text>
+		<text key="Tx:time.span.years.single" count="1">a year</text>
+		<text key="Tx:time.span neg" comment="A time span from the past until now.">for {interval}</text>
+		<text key="Tx:time.span neg.days">{#} days</text>
+		<text key="Tx:time.span neg.days" count="1">{#} day</text>
+		<text key="Tx:time.span neg.days.single">{#} days</text>
+		<text key="Tx:time.span neg.days.single" count="1">a day</text>
+		<text key="Tx:time.span neg.hours">{#} hours</text>
+		<text key="Tx:time.span neg.hours" count="1">{#} hour</text>
+		<text key="Tx:time.span neg.hours.single">{#} hours</text>
+		<text key="Tx:time.span neg.hours.single" count="1">an hour</text>
+		<text key="Tx:time.span neg.minutes">{#} minutes</text>
+		<text key="Tx:time.span neg.minutes" count="1">{#} minute</text>
+		<text key="Tx:time.span neg.minutes.single">{#} minutes</text>
+		<text key="Tx:time.span neg.minutes.single" count="1">a minute</text>
+		<text key="Tx:time.span neg.months">{#} months</text>
+		<text key="Tx:time.span neg.months" count="1">{#} month</text>
+		<text key="Tx:time.span neg.months.single">{#} months</text>
+		<text key="Tx:time.span neg.months.single" count="1">a month</text>
+		<text key="Tx:time.span neg.seconds">{#} seconds</text>
+		<text key="Tx:time.span neg.seconds" count="1">{#} second</text>
+		<text key="Tx:time.span neg.seconds.single">{#} seconds</text>
+		<text key="Tx:time.span neg.seconds.single" count="1">a second</text>
+		<text key="Tx:time.span neg.years">{#} years</text>
+		<text key="Tx:time.span neg.years" count="1">{#} year</text>
+		<text key="Tx:time.span neg.years.single">{#} years</text>
+		<text key="Tx:time.span neg.years.single" count="1">a year</text>
+		<text key="Users.Create.ViewTitle">Create User</text>
+		<text key="Users.Edit.Admin">Administrator</text>
+		<text key="Users.Edit.Cancel">Cancel</text>
+		<text key="Users.Edit.Delete">Delete</text>
+		<text key="Users.Edit.DeleteQuestion">Should the user be deleted?</text>
+		<text key="Users.Edit.Enabled">Enabled</text>
+		<text key="Users.Edit.Password">Password</text>
+		<text key="Users.Edit.Save">Save</text>
+		<text key="Users.Edit.Username">Username</text>
+		<text key="Users.Edit.Username.Duplicate">The usernam is already taken</text>
+		<text key="Users.Edit.Username.Empty">A username is required</text>
+		<text key="Users.Edit.ViewTitle">Edit user</text>
+		<text key="Users.Index.Admin">Admin</text>
+		<text key="Users.Index.DeleteQuestion">Should the user be deleted?</text>
+		<text key="Users.Index.Enabled">Enabled</text>
+		<text key="Users.Index.Title">Manage users</text>
+		<text key="Users.Index.Username">Username</text>
+		<text key="Users.Index.ViewTitle">Manage users</text>
+		<text key="VerneMQ.Index.Clients.Address">IP Address</text>
+		<text key="VerneMQ.Index.Clients.Clean">Clean Session</text>
+		<text key="VerneMQ.Index.Clients.ID">Client ID</text>
+		<text key="VerneMQ.Index.Clients.Port">Port</text>
+		<text key="VerneMQ.Index.Clients.Protocol">Protocol version</text>
+		<text key="VerneMQ.Index.Clients.SessionStart">Connected since</text>
+		<text key="VerneMQ.Index.Clients.State">State</text>
+		<text key="VerneMQ.Index.Clients.User">User</text>
+		<text key="VerneMQ.Index.ClientsOnline">Clients online</text>
+		<text key="VerneMQ.Index.Cluster.Dropped">Dropped by cluster</text>
+		<text key="VerneMQ.Index.Cluster.Received">Received from cluster</text>
+		<text key="VerneMQ.Index.Cluster.Sent">Sent to cluster</text>
+		<text key="VerneMQ.Index.Data.Received">Data received</text>
+		<text key="VerneMQ.Index.Data.Sent">Data sent</text>
+		<text key="VerneMQ.Index.Memory">Memory used</text>
+		<text key="VerneMQ.Index.Messages.Dropped">Messages dropped from queue</text>
+		<text key="VerneMQ.Index.Messages.Queued">Messages queued</text>
+		<text key="VerneMQ.Index.Messages.Received">Messages received</text>
+		<text key="VerneMQ.Index.Messages.Retained">Messages retained</text>
+		<text key="VerneMQ.Index.Messages.Sent">Messages sent</text>
+		<text key="VerneMQ.Index.Subscriptions">Subscriptions</text>
+		<text key="VerneMQ.Index.Uptime">Uptime</text>
+		<text key="VerneMQ.Index.ViewTitle">VerneMQ Broker</text>
+	</culture>
+</translation>

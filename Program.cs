@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Unclassified.TxLib;
 
 namespace VerneMQ.Control
 {
@@ -63,6 +64,13 @@ namespace VerneMQ.Control
 			try
 			{
 				Console.WriteLine($"{Product} v{Version} is starting...");
+
+				// Loading translations
+				Assembly.GetExecutingAssembly()
+					.GetManifestResourceNames()
+					.Where(f => f.ToLower().EndsWith(".txd"))
+					.ToList()
+					.ForEach(f => Tx.LoadFromEmbeddedResource(f));
 
 				var host = CreateHostBuilder(args).Build();
 				try

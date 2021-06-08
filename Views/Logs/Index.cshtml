@@ -1,12 +1,12 @@
-﻿<h1 class="h1"><span class="fas fa-history"></span> Anwendungsprotokoll</h1>
+﻿<h1 class="h1"><span class="fas fa-history"></span> @Tx.T("Logs.Index.ViewTitle")</h1>
 
 <div class="table-responsive mt-3">
 	<table class="table" id="log">
 		<thead class="table-light">
 			<tr>
-				<th scope="col">Zeitstempel</th>
-				<th scope="col">Schwere</th>
-				<th scope="col">Nachricht</th>
+				<th scope="col">@Tx.T("Logs.Index.Time")</th>
+				<th scope="col">@Tx.T("Logs.Index.Level")</th>
+				<th scope="col">@Tx.T("Logs.Index.Message")</th>
 				<th scope="col">&nbsp;</th>
 			</tr>
 		</thead>
@@ -28,28 +28,28 @@
 	<div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="dm-title"><span class="fas fa-search"></span> Details</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+				<h5 class="modal-title" id="dm-title"><span class="fas fa-search"></span> @Tx.T("Logs.Index.Details")</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@Tx.T("Logs.Index.Close")"></button>
 			</div>
 			<div class="modal-body">
-				<h4 class="properties h4">Eigenschaften</h4>
+				<h4 class="properties h4">@Tx.T("Logs.Index.Properties")</h4>
 				<div class="properties table-responsive">
 					<table class="table table-sm">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">Schlüssel</th>
-								<th scope="col">Wert</th>
+								<th scope="col">@Tx.T("Logs.Index.Key")</th>
+								<th scope="col">@Tx.T("Logs.Index.Value")</th>
 							</tr>
 						</thead>
 						<tbody id="properties"></tbody>
 					</table>
 				</div>
 
-				<h4 class="h4 exception">Ausnahme</h4>
+				<h4 class="h4 exception">@Tx.T("Logs.Index.Exception")</h4>
 				<p class="exception whitespace-pre overflow-auto" id="exception"></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Schließen</button>
+				<button type="button" class="btn btn-dark" data-bs-dismiss="modal">@Tx.T("Logs.Index.Close")</button>
 			</div>
 		</div>
 	</div>

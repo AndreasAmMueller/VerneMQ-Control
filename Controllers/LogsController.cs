@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Unclassified.TxLib;
 using VerneMQ.Control.Database;
 using VerneMQ.Control.Security;
 
@@ -37,7 +38,7 @@ namespace VerneMQ.Control.Controllers
 			if (!authUser.IsAdmin)
 				return Forbid();
 
-			ViewData["Title"] = "Anwendungsprotokoll";
+			ViewData["Title"] = Tx.T("Logs.Index.Title");
 			return View();
 		}
 

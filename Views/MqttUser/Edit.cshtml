@@ -1,13 +1,13 @@
 ﻿@model MqttUser
 <h1 class="h1"><span class="fas fa-user"></span> @ViewBag.ViewTitle</h1>
 
-<form asp-area="" asp-controller="User" asp-action="Edit" asp-route-id="" method="post">
+<form asp-area="" asp-controller="MqttUser" asp-action="Edit" asp-route-id="" method="post">
 	<input asp-for="Id" type="hidden" value="@Model.Id">
 	<input asp-for="PermissionsJson" type="hidden" value="@Model.PermissionsJson">
 
 	<div class="row g-3 mb-3">
 		<div class="col">
-			<label asp-for="Username">Benutzername</label>
+			<label asp-for="Username">@Tx.T("MqttUser.Edit.Username")</label>
 			<input asp-for="Username" class="form-control">
 			<span asp-validation-for="Username"></span>
 		</div>
@@ -15,15 +15,15 @@
 			<label>&nbsp;</label>
 			<div class="form-check mt-2">
 				<input asp-for="IsEnabled" class="form-check-input" type="checkbox">
-				<label asp-for="IsEnabled" class="form-check-label">Aktiv</label>
+				<label asp-for="IsEnabled" class="form-check-label">@Tx.T("MqttUser.Edit.IsEnabled")</label>
 			</div>
 		</div>
 	</div>
 
 	<div class="mb-3">
-		<label asp-for="Password">Passwort</label>
+		<label asp-for="Password">@Tx.T("MqttUser.Edit.Password")</label>
 		<div class="input-group">
-			<input asp-for="Password" class="form-control" type="password" placeholder="Nur angeben, um Passwort zu ändern">
+			<input asp-for="Password" class="form-control" type="password" placeholder="@Tx.T("MqttUser.Edit.Password.Placeholder")">
 			<button type="button" class="btn btn-outline-secondary toggle-password"><span class="fas fa-fw fa-eye"></span></button>
 		</div>
 		<span asp-validation-for="Password"></span>
@@ -31,18 +31,18 @@
 
 	<div class="row g-3 mb-3">
 		<div class="col-sm">
-			<label asp-for="ClientRegex">Zulässige Client-Namen <small>(<a href="https://regex101.com/" class="blank">RegEx</a>)</small></label>
+			<label asp-for="ClientRegex">@Tx.T("MqttUser.Edit.ClientRegex") <small>(<a href="https://regex101.com/" class="blank">RegEx</a>)</small></label>
 			<input asp-for="ClientRegex" class="form-control" placeholder="[0-9a-zA-Z-]+">
 			<span asp-validation-for="ClientRegex"></span>
 		</div>
 		<div class="col-sm">
-			<label asp-for="BaseTopic">Base-Topic</label>
+			<label asp-for="BaseTopic">@Tx.T("MqttUser.Edit.BaseTopic")</label>
 			<div class="input-group">
 				<input asp-for="BaseTopic" class="form-control" title="Base-Topic, mit dem alles beginnen muss (subscribe/publish)">
 				<div class="input-group-text">
 					<div class="form-check">
 						<input asp-for="DoRewrite" class="form-check-input" type="checkbox">
-						<label asp-for="DoRewrite" class="form-check-label" title="Wenn ein Topic nicht passt, schreibe es um">umschreiben</label>
+						<label asp-for="DoRewrite" class="form-check-label" title="@Tx.T("MqttUser.Edit.Rewrite.Description")">@Tx.T("MqttUser.Edit.Rewrite")</label>
 					</div>
 				</div>
 			</div>
@@ -50,24 +50,23 @@
 		</div>
 	</div>
 
-	<button type="submit" class="btn btn-outline-primary">Speichern</button>
-	<a asp-area="" asp-controller="User" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">Abbrechen</a>
+	<button type="submit" class="btn btn-outline-primary">@Tx.T("MqttUser.Edit.Save")</button>
+	<a asp-area="" asp-controller="MqttUser" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">@Tx.T("MqttUser.Edit.Cancel")</a>
 	@if (Model.Id > 0)
 	{
-		<button type="submit" name="id" value="@Model.Id" asp-area="" asp-controller="User" asp-action="Delete" asp-route-id="" class="btn btn-outline-danger" id="delete">Löschen</button>
+<button type="submit" name="id" value="@Model.Id" asp-area="" asp-controller="MqttUser" asp-action="Delete" asp-route-id="" class="btn btn-outline-danger" id="delete">@Tx.T("MqttUser.Edit.Delete")</button>
 	}
 </form>
 
-<p class="mt-5">
-	Die Lese-/Schreibrechte gelten ab dem Base-Topic (siehe oben).
-</p>
+<p class="mt-5">@Tx.T("MqttUser.Edit.PermissionsText")</p>
+
 <div class="table-responsive">
 	<table class="table" id="permissions">
 		<thead class="table-light">
 			<tr>
-				<th scope="col">Topic</th>
-				<th scope="col" class="text-center">Lesen</th>
-				<th scope="col" class="text-center">Schreiben</th>
+				<th scope="col">@Tx.T("MqttUser.Edit.Topic")</th>
+				<th scope="col" class="text-center">@Tx.T("MqttUser.Edit.Read")</th>
+				<th scope="col" class="text-center">@Tx.T("MqttUser.Edit.Write")</th>
 				<th scope="col" class="text-end">
 					<button type="button" class="btn btn-sm btn-success" id="new-permission"><span class="fas fa-fw fa-plus"></span></button>
 				</th>
@@ -97,7 +96,7 @@
 	<script type="text/javascript">
 		$(function () {
 			$('#delete').click(function (event) {
-				if (!confirm('Soll der Benutzer gelöscht werden?'))
+				if (!confirm('@Tx.T("MqttUser.Edit.DeleteQuestion")'))
 					event.preventDefault();
 			});
 

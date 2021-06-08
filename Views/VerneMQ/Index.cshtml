@@ -1,62 +1,62 @@
 ﻿@model VerneMQViewModel
-<h1 class="h1"><span class="fas fa-server"></span> VerneMQ</h1>
+<h1 class="h1"><span class="fas fa-server"></span> @Tx.T("VerneMQ.Index.ViewTitle")</h1>
 
 <div class="table-responsive">
 	<table class="table">
 		<tr>
-			<td>Laufzeit</td>
+			<td>@Tx.T("VerneMQ.Index.Uptime")</td>
 			<td data-name="uptime">@Model.Uptime</td>
 		</tr>
 		<tr>
-			<td>Clients online</td>
+			<td>@Tx.T("VerneMQ.Index.ClientsOnline")</td>
 			<td data-name="clientsOnline">@Model.ClientsOnline</td>
 		</tr>
 		<tr>
-			<td>Subscriptions</td>
+			<td>@Tx.T("VerneMQ.Index.Subscriptions")</td>
 			<td data-name="subscriptions">@Model.Subscriptions</td>
 		</tr>
 		<tr>
-			<td>Empfangen</td>
+			<td>@Tx.T("VerneMQ.Index.Data.Received")</td>
 			<td data-name="dataReceived">@Model.DataReceived</td>
 		</tr>
 		<tr>
-			<td>Gesendet</td>
+			<td>@Tx.T("VerneMQ.Index.Data.Sent")</td>
 			<td data-name="dataSent">@Model.DataSent</td>
 		</tr>
 		<tr>
-			<td>Nachrichten empfangen</td>
+			<td>@Tx.T("VerneMQ.Index.Messages.Received")</td>
 			<td data-name="messagesReceived">@Model.MessagesReceived</td>
 		</tr>
 		<tr>
-			<td>Nachrichten gesendet</td>
+			<td>@Tx.T("VerneMQ.Index.Messages.Sent")</td>
 			<td data-name="messagesSent">@Model.MessagesSent</td>
 		</tr>
 		<tr>
-			<td>Nachrichten gespeichert</td>
+			<td>@Tx.T("VerneMQ.Index.Messages.Retained")</td>
 			<td data-name="retainedMessages">@Model.RetainedMessages</td>
 		</tr>
 		<tr>
-			<td>Von Cluster erhalten</td>
+			<td>@Tx.T("VerneMQ.Index.Cluster.Received")</td>
 			<td data-name="clusterReceived">@Model.ClusterReceived</td>
 		</tr>
 		<tr>
-			<td>An Cluster gesendet</td>
+			<td>@Tx.T("VerneMQ.Index.Cluster.Sent")</td>
 			<td data-name="clusterSent">@Model.ClusterSent</td>
 		</tr>
 		<tr>
-			<td>Durch Cluster verworfen</td>
+			<td>@Tx.T("VerneMQ.Index.Cluster.Dropped")</td>
 			<td data-name="clusterDropped">@Model.ClusterDropped</td>
 		</tr>
 		<tr>
-			<td>Nachrichten in Warteschlange</td>
+			<td>@Tx.T("VerneMQ.Index.Messages.Queued")</td>
 			<td data-name="queued">@(Model.QueueIn - Model.QueueOut)</td>
 		</tr>
 		<tr>
-			<td>Verworfen (aus Warteschlange)</td>
+			<td>@Tx.T("VerneMQ.Index.Messages.Dropped")</td>
 			<td data-name="queueDropped">@Model.QueueDropped</td>
 		</tr>
 		<tr>
-			<td>Arbeitsspeicher</td>
+			<td>@Tx.T("VerneMQ.Index.Memory")</td>
 			<td data-name="usedMemory">@Model.UsedMemory</td>
 		</tr>
 	</table>
@@ -66,14 +66,14 @@
 	<table class="table" id="clients">
 		<thead class="table-light">
 			<tr>
-				<th scope="col">Benutzer</th>
-				<th scope="col">Client ID</th>
-				<th scope="col">IP Adresse</th>
-				<th scope="col">Port</th>
-				<th scope="col">Protokoll</th>
-				<th scope="col">Status</th>
-				<th scope="col" class="text-center">Sauberer Start</th>
-				<th scope="col">Verbunden seit</th>
+				<th scope="col">@Tx.T("VerneMQ.Index.Clients.User")</th>
+				<th scope="col">@Tx.T("VerneMQ.Index.Clients.ID")</th>
+				<th scope="col">@Tx.T("VerneMQ.Index.Clients.Address")</th>
+				<th scope="col">@Tx.T("VerneMQ.Index.Clients.Port")</th>
+				<th scope="col">@Tx.T("VerneMQ.Index.Clients.Protocol")</th>
+				<th scope="col">@Tx.T("VerneMQ.Index.Clients.State")</th>
+				<th scope="col" class="text-center">@Tx.T("VerneMQ.Index.Clients.Clean")</th>
+				<th scope="col">@Tx.T("VerneMQ.Index.Clients.SessionStart")</th>
 			</tr>
 		</thead>
 		<tbody class="template">

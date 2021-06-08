@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -20,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using Unclassified.TxLib;
 using VerneMQ.Control.Database;
 using VerneMQ.Control.Hubs;
 using VerneMQ.Control.Security;
@@ -163,6 +165,7 @@ namespace VerneMQ.Control
 		{
 			bool isDev = configuration.GetValue("ASPNETCORE_ENVIRONMENT", "Production") == "Development";
 
+			app.UseTx();
 			app.UseProxyHosting();
 			app.UseResponseCompression();
 
@@ -210,9 +213,11 @@ namespace VerneMQ.Control
 					httpContext.Response.Clear();
 					httpContext.Response.StatusCode = 500;
 					httpContext.Response.ContentType = "text/plain; charset=utf-8";
-					await httpContext.Response.WriteAsync(@$"Bei der Initializierung der Anwendung ist ein Fehler aufgetreten. Weitere Details können dem Log entnommen werden.
-
-Version: {Program.Version} | Serverzeit: {DateTime.Now:dd.MM.yyyy HH:mm:ss}");
+					await httpContext.Response.WriteAsync(Tx.T("Startup.InitError", new Dictionary<string, string>
+					{
+						{ "version", Program.Version },
+						{ "time", DateTime.Now.ToString($"{Tx.T("Tx:date.year month day.tab")} {Tx.T("Tx:time.hour minute second.tab")}") }
+					}));
 					return;
 				}
 
@@ -273,11 +278,11 @@ Version: {Program.Version} | Serverzeit: {DateTime.Now:dd.MM.yyyy HH:mm:ss}");
 
 				endpoints.MapControllerRoute(
 					name: "defaultNoAction",
-					pattern: "{controller=User}/{id:int}",
+					pattern: "{controller=MqttUser}/{id:int}",
 					defaults: new { action = "Index" });
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=User}/{action=Index}/{id?}");
+					pattern: "{controller=MqttUser}/{action=Index}/{id?}");
 			});
 		}
 	}

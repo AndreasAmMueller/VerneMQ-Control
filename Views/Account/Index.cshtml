@@ -1,19 +1,19 @@
 ﻿@model WebUser
-<h1 class="h1"><span class="fas fa-user"></span> Profil</h1>
+<h1 class="h1"><span class="fas fa-user"></span> @Tx.T("Account.Index.ViewTitle")</h1>
 
 <form asp-area="" asp-controller="Account" asp-action="Index" asp-route-id="" method="post">
 	<div class="mb-3">
-		<label asp-for="Username">Benutzername</label>
+		<label asp-for="Username">@Tx.T("Account.Index.Username")</label>
 		<input asp-for="Username" class="form-control">
 		<span asp-validation-for="Username"></span>
 	</div>
 
 	<div class="mb-3">
-		<label asp-for="Password">Passwort</label>
-		<input asp-for="Password" class="form-control" type="password" placeholder="Nur angeben, um das Passwort zu ändern">
+		<label asp-for="Password">@Tx.T("Account.Index.Password")</label>
+		<input asp-for="Password" class="form-control" type="password" placeholder="@Tx.T("Account.Index.Password.Placeholder")">
 		<span asp-validation-for="Password"></span>
 	</div>
 
-	<button type="submit" class="btn btn-outline-primary">Speichern</button>
-	<a asp-area="" asp-controller="Account" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">Abbrechen</a>
+	<button type="submit" class="btn btn-outline-primary">@Tx.T("Account.Index.Save")</button>
+	<a asp-area="" asp-controller="Account" asp-action="Index" asp-route-id="" class="btn btn-outline-secondary">@Tx.T("Account.Index.Cancel")</a>
 </form>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Unclassified.TxLib;
 using VerneMQ.Control.Database;
 using VerneMQ.Control.Database.Entities;
 using VerneMQ.Control.Models;
@@ -46,7 +47,7 @@ namespace VerneMQ.Control.Controllers
 			if (authUser == null)
 				return Unauthorized();
 
-			ViewData["Title"] = "Profil";
+			ViewData["Title"] = Tx.T("Account.Index.Title");
 			return View(authUser);
 		}
 
@@ -65,7 +66,7 @@ namespace VerneMQ.Control.Controllers
 
 			if (string.IsNullOrWhiteSpace(model.Username))
 			{
-				ModelState.AddModelError(nameof(model.Username), "Ein Benutzername ist erforderlich");
+				ModelState.AddModelError(nameof(model.Username), Tx.T("Account.Index.Username.Empty"));
 				return View(model);
 			}
 
@@ -76,7 +77,7 @@ namespace VerneMQ.Control.Controllers
 				.Where(u => u.Username == model.Username)
 				.Any())
 			{
-				ModelState.AddModelError(nameof(model.Username), "Der Benutzername ist bereits vergeben");
+				ModelState.AddModelError(nameof(model.Username), Tx.T("Account.Index.Username.Duplicate"));
 				return View(model);
 			}
 
@@ -105,7 +106,7 @@ namespace VerneMQ.Control.Controllers
 		[AllowAnonymous]
 		public IActionResult Login()
 		{
-			ViewData["Title"] = "Anmelden";
+			ViewData["Title"] = Tx.T("Account.Login.Title");
 			return View(new AccountViewModel());
 		}
 
@@ -120,13 +121,13 @@ namespace VerneMQ.Control.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(AccountViewModel model, string returnUrl)
 		{
-			ViewData["Title"] = "Anmelden";
+			ViewData["Title"] = Tx.T("Account.Login.Title");
 
 			if (string.IsNullOrWhiteSpace(model.Username))
-				ModelState.AddModelError(nameof(model.Username), "Ein Benutzername ist erforderlich");
+				ModelState.AddModelError(nameof(model.Username), Tx.T("Account.Login.Username.Empty"));
 
 			if (string.IsNullOrWhiteSpace(model.Password))
-				ModelState.AddModelError(nameof(model.Password), "Ein Passwort ist erforderlich");
+				ModelState.AddModelError(nameof(model.Password), Tx.T("Account.Login.Password.Empty"));
 
 			if (!ModelState.IsValid)
 				return View(model);
@@ -140,13 +141,13 @@ namespace VerneMQ.Control.Controllers
 				.FirstOrDefault();
 			if (user == null)
 			{
-				ModelState.AddModelError(nameof(model.Username), "Der Benutzername ist nicht bekannt");
+				ModelState.AddModelError(nameof(model.Username), Tx.T("Account.Login.Username.NotFound"));
 				return View(model);
 			}
 
 			if (!PasswordHelper.VerifyPassword(model.Password, user.PasswordHash, out bool rehash))
 			{
-				ModelState.AddModelError(nameof(model.Password), "Das Passwort ist nicht korrekt");
+				ModelState.AddModelError(nameof(model.Password), Tx.T("Account.Login.Password.Wrong"));
 				return View(model);
 			}
 
@@ -170,7 +171,7 @@ namespace VerneMQ.Control.Controllers
 			if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
 				return Redirect(returnUrl);
 
-			return RedirectToAction(nameof(UserController.Index), "User");
+			return RedirectToAction(nameof(MqttUserController.Index), "MqttUser");
 		}
 
 		/// <summary>
@@ -181,7 +182,7 @@ namespace VerneMQ.Control.Controllers
 		public async Task<IActionResult> Logout()
 		{
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-			return RedirectToAction(nameof(UserController.Index), "User");
+			return RedirectToAction(nameof(MqttUserController.Index), "MqttUser");
 		}
 	}
 }

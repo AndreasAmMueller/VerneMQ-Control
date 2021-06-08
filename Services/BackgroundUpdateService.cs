@@ -42,7 +42,7 @@ namespace VerneMQ.Control.Services
 		/// <returns></returns>
 		public Task StartAsync(CancellationToken cancellationToken)
 		{
-			var interval = TimeSpan.FromSeconds(2);
+			var interval = TimeSpan.FromSeconds(5);
 			vmqTimer = new Timer(OnVmqTimer, null, interval.GetAlignedInterval(), interval);
 			return Task.CompletedTask;
 		}

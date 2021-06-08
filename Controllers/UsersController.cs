@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Unclassified.TxLib;
 using VerneMQ.Control.Database;
 using VerneMQ.Control.Database.Entities;
 using VerneMQ.Control.Security;
@@ -49,7 +50,7 @@ namespace VerneMQ.Control.Controllers
 				.ThenBy(u => u.Username)
 				.ToList();
 
-			ViewData["Title"] = "Benutzerverwaltung";
+			ViewData["Title"] = Tx.T("Users.Index.Title");
 			return View(list);
 		}
 
@@ -65,8 +66,8 @@ namespace VerneMQ.Control.Controllers
 			if (!authUser.IsAdmin)
 				return Forbid();
 
-			ViewData["Title"] = "Benutzerverwaltung";
-			ViewData["ViewTitle"] = "Neuer Benutzer";
+			ViewData["Title"] = Tx.T("Users.Index.Title");
+			ViewData["ViewTitle"] = Tx.T("Users.Create.ViewTitle");
 			return View(nameof(Edit), new WebUser
 			{
 				IsEnabled = true
@@ -92,8 +93,8 @@ namespace VerneMQ.Control.Controllers
 			if (user == null)
 				return NotFound();
 
-			ViewData["Title"] = "Benutzerverwaltung";
-			ViewData["ViewTitle"] = "Benutzer bearbeiten";
+			ViewData["Title"] = Tx.T("Users.Index.Title");
+			ViewData["ViewTitle"] = Tx.T("Users.Edit.ViewTitle");
 			return View(user);
 		}
 
@@ -112,12 +113,12 @@ namespace VerneMQ.Control.Controllers
 			if (!authUser.IsAdmin)
 				return Forbid();
 
-			ViewData["Title"] = "Benutzerverwaltung";
-			ViewData["ViewTitle"] = model.Id > 0 ? "Benutzer bearbeiten" : "Neuer Benutzer";
+			ViewData["Title"] = Tx.T("Users.Index.Title");
+			ViewData["ViewTitle"] = model.Id > 0 ? Tx.T("Users.Edit.ViewTitle") : Tx.T("Users.Create.ViewTitle");
 
 			if (string.IsNullOrWhiteSpace(model.Username))
 			{
-				ModelState.AddModelError(nameof(model.Username), "Ein Benutzername ist erforderlich");
+				ModelState.AddModelError(nameof(model.Username), Tx.T("Users.Edit.Username.Empty"));
 				return View(model);
 			}
 
@@ -127,7 +128,7 @@ namespace VerneMQ.Control.Controllers
 				.Where(u => u.Username == model.Username)
 				.Any())
 			{
-				ModelState.AddModelError(nameof(model.Username), "Der Benutzername ist bereits vergeben");
+				ModelState.AddModelError(nameof(model.Username), Tx.T("Users.Edit.Username.Duplicate"));
 				return View(model);
 			}
 

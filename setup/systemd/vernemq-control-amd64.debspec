@@ -1,0 +1,61 @@
+# Spec file options
+basepath: ../..
+outdir: ../bin
+
+# Common directory variables
+ETCDIR = etc/vernemq
+OPTDIR = opt/vmq-control
+DEFDIR = etc/default
+
+# Package control file
+package: vernemq-control
+version: 0.0.1
+architecture: amd64
+#pre-depends: debconf (>= 0.2.17)
+#depends: mono-runtime, libmono-system-runtime4.0-cil, libmono-system4.0-cil
+maintainer: AM.WD
+homepage: https://am-wd.de
+description: A Web-UI to control the VerneMQ users and access permissions more easily.
+
+# Maintenance scripts
+#preinst: setup/systemd/preinst
+postinst: setup/systemd/postinst
+prerm: setup/systemd/prerm
+postrm: setup/systemd/postrm
+
+# Startup scripts and configuration
+file: setup/systemd/vernemq-control.service  etc/systemd/system/
+conffile: setup/config/control.ini           {ETCDIR}/control.ini     600
+conffile: setup/config/default               {DEFDIR}/vernemq-control 600
+
+# Application files
+file: bin/Release/linux-x64/publish/*                                   {OPTDIR}/
+
+# webroot
+file: bin/Release/linux-x64/publish/wwwroot/*                           {OPTDIR}/wwwroot/
+file: bin/Release/linux-x64/publish/wwwroot/css/*                       {OPTDIR}/wwwroot/css/
+file: bin/Release/linux-x64/publish/wwwroot/ico/*                       {OPTDIR}/wwwroot/ico/
+file: bin/Release/linux-x64/publish/wwwroot/js/*                        {OPTDIR}/wwwroot/js/
+
+# libraries
+file: bin/Release/linux-x64/publish/wwwroot/lib/bs/*                    {OPTDIR}/wwwroot/lib/bs/
+file: bin/Release/linux-x64/publish/wwwroot/lib/bs/dist/css/*           {OPTDIR}/wwwroot/lib/bs/dist/css/
+file: bin/Release/linux-x64/publish/wwwroot/lib/bs/dist/js/*            {OPTDIR}/wwwroot/lib/bs/dist/js/
+
+file: bin/Release/linux-x64/publish/wwwroot/lib/fa/*                    {OPTDIR}/wwwroot/lib/fa/
+file: bin/Release/linux-x64/publish/wwwroot/lib/fa/css/*                {OPTDIR}/wwwroot/lib/fa/css/
+file: bin/Release/linux-x64/publish/wwwroot/lib/fa/webfonts/*           {OPTDIR}/wwwroot/lib/fa/webfonts/
+
+file: bin/Release/linux-x64/publish/wwwroot/lib/jq/*                    {OPTDIR}/wwwroot/lib/jq/
+file: bin/Release/linux-x64/publish/wwwroot/lib/jq/dist/*               {OPTDIR}/wwwroot/lib/jq/dist/
+
+file: bin/Release/linux-x64/publish/wwwroot/lib/luxon/*                 {OPTDIR}/wwwroot/lib/luxon/
+file: bin/Release/linux-x64/publish/wwwroot/lib/luxon/build/global/*    {OPTDIR}/wwwroot/lib/luxon/build/global/
+
+file: bin/Release/linux-x64/publish/wwwroot/lib/rr/*                    {OPTDIR}/wwwroot/lib/rr/
+
+file: bin/Release/linux-x64/publish/wwwroot/lib/signalr/*               {OPTDIR}/wwwroot/lib/signalr/
+file: bin/Release/linux-x64/publish/wwwroot/lib/signalr/dist/browser/*  {OPTDIR}/wwwroot/lib/signalr/dist/browser/
+
+# executable
+file: bin/Release/linux-x64/publish/VerneMQ-Control                     {OPTDIR}/  755

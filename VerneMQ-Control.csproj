@@ -49,8 +49,8 @@
     <None Remove="Database\SqlScripts\*.sql" />
     <EmbeddedResource Include="Database\SqlScripts\*.sql" />
 
-    <None Remove="Translation\VerneMQ.Control.txd" />
-    <EmbeddedResource Include="Translation\VerneMQ.Control.txd" />
+    <None Remove="Translation\*.txd" />
+    <EmbeddedResource Include="Translation\*.txd" />
 
     <Content Include="appsettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ -x "$(command -v systemctl)" ]; then
+	systemctl enable vernemq-control || exit 1
+
+	echo "--------------------------------------------------------------------------------"
+	echo "You need to edit the config file before starting the service:"
+	echo "    /etc/vernemq/control.ini"
+	echo "To start the server, run:"
+	echo "    systemctl start vernemq-control"
+	echo "--------------------------------------------------------------------------------"
+	exit 0
+fi
+
+echo "--------------------------------------------------------------------------------"
+echo "You need to edit the config file before starting the server:"
+echo "    /etc/vernemq/control.ini"
+echo "To start the server, execute:"
+echo "    /opt/vmq-control/VerneMQ-Control"
+echo "No suitable method for autostart found! Please configure it manually."
+echo "--------------------------------------------------------------------------------"
+exit 0

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "unclassified.dotnetmakedeb": {
+      "version": "0.2.1",
+      "commands": [
+        "make-deb"
+      ]
+    }
+  }
+}

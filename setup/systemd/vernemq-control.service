@@ -1,0 +1,16 @@
+[Unit]
+Description=VerneMQ Control Web-UI
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+EnvironmentFile=/etc/default/vernemq-control
+WorkingDirectory=/opt/vmq-control
+ExecStart=/opt/vmq-control/VerneMQ-Control
+Restart=always
+RestartSec=60
+SyslogIdentifier=vernemq-control
+
+[Install]
+WantedBy=multi-user.target

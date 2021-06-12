@@ -99,7 +99,7 @@
 					<td>@client.ProtocolVersion</td>
 					<td>@client.Status</td>
 					<td class="text-center"><span class="fas @(client.CleanSession ? "fa-check text-success" : "fa-times text-warning")"></span></td>
-					<td>@client.SessionStartTime.ToString("dd.MM.yyyy HH:mm:ss")</td>
+					<td>@client.SessionStartTime.AsUtc().ToLocalTime().ToString($"{Tx.T("Tx:date.year month day.tab")} {Tx.T("Tx:time.hour minute second.tab")}")</td>
 				</tr>
 			}
 		</tbody>
@@ -138,7 +138,7 @@
 								$(el).text(client[key]);
 							});
 
-							$(row).find('[data-name="sessionStart"]').text(dt.toFormat('dd.MM.yyyy HH:mm:ss'));
+							$(row).find('[data-name="sessionStart"]').text(dt.toFormat('@($"{Tx.T("Tx:date.year month day.tab")} {Tx.T("Tx:time.hour minute second.tab")}")'));
 							$(row).find('[data-name="cleanSession"]').html($('<span/>').addClass('fas').addClass(client.sessionStart ? 'fa-check text-success' : 'fa-times text-warning'));
 
 							$('#clients .items').append(row);

@@ -111,7 +111,7 @@
 							row.data('exception', entry.exception.trim());
 							row.data('properties', entry.properties);
 
-							row.find('[data-name="time"]').text(dt.toFormat('dd.MM.yyyy HH:mm:ss'));
+							row.find('[data-name="time"]').text(dt.toFormat('@($"{Tx.T("Tx:date.year month day.tab")} {Tx.T("Tx:time.hour minute second.tab")}")'));
 							row.find('[data-name="level"]').text(entry.level);
 							row.find('[data-name="message"]').text(entry.message);
 

@@ -69,6 +69,7 @@ namespace VerneMQ.Control.Controllers
 			switch (hook)
 			{
 				case "auth_on_register":
+				case "auth_on_register_m5":
 					{
 						if (!PasswordHelper.VerifyPassword(password, user.PasswordHash, out _))
 							return Json(new { result = new { error = $"The password for user '{username}' is invalid" } });
@@ -80,13 +81,33 @@ namespace VerneMQ.Control.Controllers
 						return Json(new { result = new { error = $"The client id '{clientId}' for user '{username}' is not allowed" } });
 					}
 				case "auth_on_subscribe":
+				case "auth_on_subscribe_m5":
 					{
+						int forbidden = 0;
+						JObject result = null;
 						var topics = new JArray();
-						var result = new JObject
+
+						if (hook.EndsWith("m5", StringComparison.OrdinalIgnoreCase))
 						{
-							["result"] = "ok",
-							["topics"] = topics
-						};
+							forbidden = 135;
+							result = new JObject
+							{
+								["result"] = "ok",
+								["modifiers"] = new JObject
+								{
+									["topics"] = topics
+								}
+							};
+						}
+						else
+						{
+							forbidden = 128;
+							result = new JObject
+							{
+								["result"] = "ok",
+								["topics"] = topics
+							};
+						}
 
 						foreach (var topicReq in req["topics"])
 						{
@@ -110,13 +131,14 @@ namespace VerneMQ.Control.Controllers
 							topics.Add(new JObject
 							{
 								["topic"] = topic,
-								["qos"] = isAllowed ? topicReq.Value<int>("qos") : 128
+								["qos"] = isAllowed ? topicReq.Value<int>("qos") : forbidden
 							});
 						}
 
 						return Json(result);
 					}
 				case "auth_on_publish":
+				case "auth_on_publish_m5":
 					{
 						string topic = req.Value<string>("topic");
 						if (user.DoRewrite && !string.IsNullOrWhiteSpace(user.BaseTopic) && !topic.StartsWith(user.BaseTopic))

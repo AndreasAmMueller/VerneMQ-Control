@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VerneMQ.Control.Database.Entities
 {
@@ -42,6 +43,11 @@ namespace VerneMQ.Control.Database.Entities
 		public static bool IsTopicMatch(string topic, string toCheck)
 		{
 			if (string.IsNullOrWhiteSpace(toCheck))
+				return false;
+
+			// explicit permissions for $SYS-tree is required
+			if (toCheck.StartsWith("$SYS", StringComparison.OrdinalIgnoreCase) &&
+				!topic.StartsWith("$SYS", StringComparison.OrdinalIgnoreCase))
 				return false;
 
 			string[] source = topic.Split('/');

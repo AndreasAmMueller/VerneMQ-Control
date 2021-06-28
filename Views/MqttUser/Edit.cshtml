@@ -111,9 +111,9 @@
 				$(event.currentTarget).closest('tr').remove();
 			});
 
-			$('form').submit(function () {
+			$('form').submit(function (event) {
 				let permissions = [];
-				$('#permissions .items').each(function (_, row) {
+				$('#permissions .items tr').each(function (_, row) {
 					let topic = $(row).find('[data-name="topic"]').val().trim();
 					if (topic !== '') {
 						permissions.push({

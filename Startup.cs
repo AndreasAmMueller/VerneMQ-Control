@@ -64,7 +64,7 @@ namespace VerneMQ.Control
 #if DEBUG
 				options.EnableSensitiveDataLogging();
 #endif
-				options.UseDbProvider(configuration.GetSection("Database"), opts =>
+				options.UseDatabaseProvider(configuration.GetSection("Database"), opts =>
 				{
 					opts.AbsoluteBasePath = PersistentDataDirectory;
 				});

@@ -1,7 +1,6 @@
 # Project specific files/folders
 launchSettings.json
 data
-nuget.config
 
 # Created by https://www.toptal.com/developers/gitignore/api/aspnetcore,visualstudio,visualstudiocode,windows,svn
 # Edit at https://www.toptal.com/developers/gitignore?templates=aspnetcore,visualstudio,visualstudiocode,windows,svn

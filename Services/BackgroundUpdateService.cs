@@ -47,7 +47,7 @@ namespace VerneMQ.Control.Services
 			var interval = TimeSpan.FromSeconds(5);
 
 			timerLock = new SemaphoreSlim(1, 1);
-			vmqTimer = new Timer(OnVmqTimer, null, interval.GetAlignedInterval(), interval);
+			vmqTimer = new Timer(OnVmqTimer, null, interval.GetAlignedIntervalUtc(), interval);
 
 			return Task.CompletedTask;
 		}

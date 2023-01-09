@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using AMWD.Common.Utils;
+using AMWD.Common.Utilities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
@@ -119,10 +119,6 @@ namespace VerneMQ.Control
 						if (args?.Any() == true)
 							configuration.AddCommandLine(args);
 					});
-					builder.UseSerilog((hostingContext, configuration) =>
-					{
-						configuration.ReadFrom.Configuration(hostingContext.Configuration);
-					});
 					builder.UseDefaultServiceProvider((_, options) =>
 					{
 #if DEBUG
@@ -136,12 +132,15 @@ namespace VerneMQ.Control
 						{
 							string address = hostingContext.Configuration.GetValue("Hosting:Address", "127.0.0.1");
 							int port = hostingContext.Configuration.GetValue("Hosting:Port", 5000);
-							var ipAddress = NetworkHelper.ResolveHost(address);
-							if (ipAddress == null)
-								ipAddress = IPAddress.Loopback;
+							var ipAddresses = NetworkHelper.ResolveHost(address);
+							if (!ipAddresses.Any())
+								ipAddresses.Add(IPAddress.Loopback);
 
-							options.Listen(ipAddress, port);
-							Log.Information($"Listening on {ipAddress}, port {port}");
+							foreach (var ipAddress in ipAddresses)
+							{
+								options.Listen(ipAddress, port);
+								Log.Information($"Listening on {ipAddress}, port {port}");
+							}
 						}
 
 						options.AddServerHeader = false;
@@ -151,6 +150,10 @@ namespace VerneMQ.Control
 						});
 					});
 					builder.UseStartup<Startup>();
+				})
+				.UseSerilog((hostingContext, configuration) =>
+				{
+					configuration.ReadFrom.Configuration(hostingContext.Configuration);
 				})
 				.UseSystemd();
 		}

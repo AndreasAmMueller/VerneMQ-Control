@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +13,7 @@ namespace VerneMQ.Control.Controllers
 	/// <summary>
 	/// Implements the status view.
 	/// </summary>
-	/// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
+	/// <seealso cref="Controller" />
 	[Authorize]
 	public class VerneMQController : Controller
 	{
@@ -40,11 +41,11 @@ namespace VerneMQ.Control.Controllers
 
 			var model = new VerneMQViewModel
 			{
-				Clients = await VmqHelper.GetClients(configuration.GetValue("VerneMQ:Admin", "/vernemq/bin/vmq-admin"), logger)
+				Clients = await VmqHelper.GetClients(configuration.GetValue("VerneMQ:Admin", "/vernemq/bin/vmq-admin"), logger, HttpContext.RequestAborted)
 			};
 
-			var metrics = await VmqHelper.GetMetrics(configuration.GetValue("VerneMQ:Metrics", "http://localhost:8888/metrics"), logger);
-			if (metrics == null)
+			var metrics = await VmqHelper.GetMetrics(configuration.GetValue("VerneMQ:Metrics", "http://localhost:8888/metrics"), logger, HttpContext.RequestAborted);
+			if (metrics?.Any() != true)
 				return View(model);
 
 			model.SocketClose = metrics["socket_close"];

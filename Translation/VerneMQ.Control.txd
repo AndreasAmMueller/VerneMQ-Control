@@ -297,6 +297,7 @@ Version: {version} | Serverzeit: {time}</text>
 		<text key="VerneMQ.Index.Clients.Address">IP Adresse</text>
 		<text key="VerneMQ.Index.Clients.Clean">Sauberer Start</text>
 		<text key="VerneMQ.Index.Clients.ID">Client-ID</text>
+		<text key="VerneMQ.Index.Clients.MaxRows">* max. 100 Zeilen</text>
 		<text key="VerneMQ.Index.Clients.Port">Port</text>
 		<text key="VerneMQ.Index.Clients.Protocol">Protokollversion</text>
 		<text key="VerneMQ.Index.Clients.SessionStart">Verbunden seit</text>
@@ -630,6 +631,7 @@ Version: {version} | Server time: {time}</text>
 		<text key="VerneMQ.Index.Clients.Address">IP Address</text>
 		<text key="VerneMQ.Index.Clients.Clean">Clean Session</text>
 		<text key="VerneMQ.Index.Clients.ID">Client ID</text>
+		<text key="VerneMQ.Index.Clients.MaxRows">* max. 100 rows</text>
 		<text key="VerneMQ.Index.Clients.Port">Port</text>
 		<text key="VerneMQ.Index.Clients.Protocol">Protocol version</text>
 		<text key="VerneMQ.Index.Clients.SessionStart">Connected since</text>

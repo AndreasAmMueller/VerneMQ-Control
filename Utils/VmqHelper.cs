@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,6 +14,10 @@ namespace VerneMQ.Control.Utils
 {
 	internal static class VmqHelper
 	{
+		private static DateTime lastMetricsError = DateTime.MinValue;
+
+		private static DateTime lastClientsError = DateTime.MinValue;
+
 		public static async Task<Dictionary<string, ulong>> GetMetrics(string url, ILogger logger = null, CancellationToken cancellationToken = default)
 		{
 			try
@@ -46,12 +49,18 @@ namespace VerneMQ.Control.Utils
 			}
 			catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
 			{
-				throw;
+				// action cancelled
+				return new();
 			}
 			catch (Exception ex)
 			{
-				logger?.LogError(ex, $"Loading metrics failed: {ex.GetMessage()}");
-				return null;
+				if (DateTime.UtcNow - lastMetricsError > TimeSpan.FromMinutes(5))
+				{
+					logger?.LogError(ex, $"Loading metrics failed: {ex.GetMessage()}");
+					lastMetricsError = DateTime.UtcNow;
+				}
+
+				return new();
 			}
 		}
 
@@ -59,6 +68,9 @@ namespace VerneMQ.Control.Utils
 		{
 			try
 			{
+				var clients = new List<VmqClient>();
+				var lineRegex = new Regex(@"^\|(.*)\|(.*)\|([0-9a-fA-F.: ]+)\|([0-9 ]+)\|([0-9 ]+)\|([0-9 ]+)\|(.*)\|(.*)\|$");
+
 				var psi = new ProcessStartInfo
 				{
 					WorkingDirectory = Path.GetDirectoryName(vmqAdminPath),
@@ -68,46 +80,54 @@ namespace VerneMQ.Control.Utils
 					RedirectStandardOutput = true
 				};
 				var process = Process.Start(psi);
-				
-				var lines = new List<string>();
-				while ((!process.HasExited && !process.StandardOutput.EndOfStream) && !cancellationToken.IsCancellationRequested)
+
+				while (!process.HasExited && !process.StandardOutput.EndOfStream && !cancellationToken.IsCancellationRequested)
 				{
-					string line = await process.StandardOutput.ReadLineAsync();
-					if (line != null)
-						lines.Add(line);
-				}
-				
-				if (cancellationToken.IsCancellationRequested && !process.HasExited)
-					process.Kill();
-
-				if (!lines.Any())
-					return new();
-
-				var clients = new List<VmqClient>();
-				foreach (string line in lines.Where(l => l.StartsWith("|")).Skip(1))
-				{
-					string l = line.Trim('|');
-					string[] parts = l.Split('|');
-
-					var client = new VmqClient
+					try
 					{
-						CleanSession = bool.Parse(parts[0].Trim()),
-						ClientId = parts[1].Trim(),
-						IpAddress = parts[2].Trim(),
-						Port = int.Parse(parts[3].Trim()),
-						Protocol = int.Parse(parts[4].Trim()),
-						SessionStart = ulong.Parse(parts[5].Trim()),
-						Status = parts[6].Trim(),
-						UserName = parts[7].Trim()
-					};
-					clients.Add(client);
+						string line = await process.StandardOutput.ReadLineAsync();
+						var regex = lineRegex.Match(line);
+						if (regex.Success)
+						{
+							var client = new VmqClient
+							{
+								CleanSession = bool.Parse(regex.Groups[1].Value.Trim()),
+								ClientId = regex.Groups[2].Value.Trim(),
+								IpAddress = regex.Groups[3].Value.Trim(),
+								Port = int.Parse(regex.Groups[4].Value.Trim()),
+								Protocol = int.Parse(regex.Groups[5].Value.Trim()),
+								SessionStart = ulong.Parse(regex.Groups[6].Value.Trim()),
+								Status = regex.Groups[7].Value.Trim(),
+								UserName = regex.Groups[8].Value.Trim()
+							};
+
+							clients.Add(client);
+						}
+					}
+					catch
+					{
+						// keep it quiet - it's ok
+					}
 				}
+
+				if (cancellationToken.IsCancellationRequested && !process.HasExited)
+					process.Kill(entireProcessTree: true);
 
 				return clients;
 			}
+			catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+			{
+				// action cancelled
+				return new();
+			}
 			catch (Exception ex)
 			{
-				logger?.LogError(ex, $"Loading clients failed: {ex.GetMessage()}");
+				if (DateTime.UtcNow - lastClientsError > TimeSpan.FromMinutes(5))
+				{
+					logger?.LogError(ex, $"Loading clients failed: {ex.GetMessage()}");
+					lastClientsError = DateTime.UtcNow;
+				}
+
 				return new();
 			}
 		}

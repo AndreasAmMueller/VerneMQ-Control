@@ -15,7 +15,7 @@ namespace VerneMQ.Control.Services
 	/// <summary>
 	/// Implements updates for for the web interface.
 	/// </summary>
-	/// <seealso cref="Microsoft.Extensions.Hosting.IHostedService" />
+	/// <seealso cref="IHostedService" />
 	public class BackgroundUpdateService : IHostedService
 	{
 		private readonly ILogger logger;
@@ -23,6 +23,8 @@ namespace VerneMQ.Control.Services
 
 		private Timer vmqTimer;
 		private bool errorReported;
+
+		private SemaphoreSlim timerLock;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BackgroundUpdateService"/> class.
@@ -43,7 +45,10 @@ namespace VerneMQ.Control.Services
 		public Task StartAsync(CancellationToken cancellationToken)
 		{
 			var interval = TimeSpan.FromSeconds(5);
+
+			timerLock = new SemaphoreSlim(1, 1);
 			vmqTimer = new Timer(OnVmqTimer, null, interval.GetAlignedInterval(), interval);
+
 			return Task.CompletedTask;
 		}
 
@@ -56,6 +61,10 @@ namespace VerneMQ.Control.Services
 		{
 			vmqTimer?.Dispose();
 			vmqTimer = null;
+
+			timerLock?.Dispose();
+			timerLock = null;
+
 			return Task.CompletedTask;
 		}
 
@@ -63,6 +72,9 @@ namespace VerneMQ.Control.Services
 		{
 			try
 			{
+				if (!timerLock.Wait(0))
+					return;
+
 				using var scope = serviceScopeFactory.CreateScope();
 
 				var hub = scope.ServiceProvider.GetRequiredService<IHubContext<WebHub>>();
@@ -102,6 +114,10 @@ namespace VerneMQ.Control.Services
 					logger.LogError(ex, $"Updating VerneMQ Information failed: {ex.GetMessage()}");
 
 				errorReported = true;
+			}
+			finally
+			{
+				timerLock?.Release();
 			}
 		}
 	}

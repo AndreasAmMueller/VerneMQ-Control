@@ -45,7 +45,7 @@ namespace VerneMQ.Control.Controllers
 		{
 			int cacheSeconds = configuration.GetValue("Hosting:CacheTime", 60);
 			cacheSeconds = Math.Max(cacheSeconds, 0);   // prevent negative values.
-			Response.Headers.Add("cache-control", $"max-age={cacheSeconds}");
+			Response.Headers.CacheControl = $"max-age={cacheSeconds}";
 
 			string json = null;
 			using (var sr = new StreamReader(Request.Body))
@@ -177,7 +177,7 @@ namespace VerneMQ.Control.Controllers
 			if (authUser?.IsAdmin == true)
 				return Ok();
 
-			Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{Tx.T("Auth.Basic.Realm")}\"");
+			Response.Headers.WWWAuthenticate = $"Basic realm=\"{Tx.T("Auth.Basic.Realm")}\"";
 			return Unauthorized(Tx.T("Auth.Basic.Text"));
 		}
 	}

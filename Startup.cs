@@ -277,12 +277,8 @@ namespace VerneMQ.Control
 				endpoints.MapHub<WebHub>("/live");
 
 				endpoints.MapControllerRoute(
-					name: "defaultNoAction",
-					pattern: "{controller=MqttUser}/{id:int}",
-					defaults: new { action = "Index" });
-				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=MqttUser}/{action=Index}/{id?}");
+					pattern: "{controller=BrokerUser}/{action=Index}/{id?}");
 			});
 		}
 	}

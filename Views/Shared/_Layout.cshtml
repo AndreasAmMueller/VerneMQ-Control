@@ -22,7 +22,7 @@
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container">
-				<a asp-area="" asp-controller="MqttUser" asp-action="Index" asp-route-id="" class="navbar-brand">@Tx.T("AppTitle")</a>
+				<a asp-area="" asp-controller="BrokerUser" asp-action="Index" asp-route-id="" class="navbar-brand">@Tx.T("AppTitle")</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="@Tx.T("Layout.Menu.Toggle")">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -31,7 +31,7 @@
 						@if (authUser != null)
 						{
 							<li class="nav-item">
-								<a class="nav-link" asp-area="" asp-controller="MqttUser" asp-action="Index" asp-route-id="" condition-class-active="@isActive("", "MqttUser", "")">@Tx.T("Layout.Menu.MqttUser")</a>
+								<a class="nav-link" asp-area="" asp-controller="BrokerUser" asp-action="Index" asp-route-id="" condition-class-active="@isActive("", "BrokerUser", "")">@Tx.T("Layout.Menu.BrokerUser")</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" asp-area="" asp-controller="VerneMQ" asp-action="Index" asp-route-id="" condition-class-active="@isActive("", "VerneMQ", "")">@Tx.T("Layout.Menu.VerneMQ")</a>

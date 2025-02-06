@@ -20,17 +20,17 @@ namespace VerneMQ.Control.Controllers
 	/// </summary>
 	/// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
 	[Authorize]
-	public class MqttUserController : Controller
+	public class BrokerUserController : Controller
 	{
 		private readonly ILogger logger;
 		private readonly ServerDbContext dbContext;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MqttUserController"/> class.
+		/// Initializes a new instance of the <see cref="BrokerUserController"/> class.
 		/// </summary>
 		/// <param name="logger">The logger.</param>
 		/// <param name="dbContext">The database context.</param>
-		public MqttUserController(ILogger<MqttUserController> logger, ServerDbContext dbContext)
+		public BrokerUserController(ILogger<BrokerUserController> logger, ServerDbContext dbContext)
 		{
 			this.logger = logger;
 			this.dbContext = dbContext;
@@ -51,7 +51,7 @@ namespace VerneMQ.Control.Controllers
 				.ThenBy(u => u.Username)
 				.ToList();
 
-			ViewData["Title"] = Tx.T("MqttUser.Index.Title");
+			ViewData["Title"] = Tx.T("BrokerUser.Index.Title");
 			return View(list);
 		}
 
@@ -65,8 +65,8 @@ namespace VerneMQ.Control.Controllers
 			if (authUser == null)
 				return Unauthorized();
 
-			ViewData["Title"] = Tx.T("MqttUser.Index.Title");
-			ViewData["ViewTitle"] = Tx.T("MqttUser.Create.ViewTitle");
+			ViewData["Title"] = Tx.T("BrokerUser.Index.Title");
+			ViewData["ViewTitle"] = Tx.T("BrokerUser.Create.ViewTitle");
 			return View(nameof(Edit), new MqttUser
 			{
 				IsEnabled = true,
@@ -95,8 +95,8 @@ namespace VerneMQ.Control.Controllers
 			user.Permissions.ForEach(p => p.User = null);
 			user.PermissionsJson = user.Permissions.SerializeJson();
 
-			ViewData["Title"] = Tx.T("MqttUser.Index.Title");
-			ViewData["ViewTitle"] = Tx.T("MqttUser.Edit.ViewTitle");
+			ViewData["Title"] = Tx.T("BrokerUser.Index.Title");
+			ViewData["ViewTitle"] = Tx.T("BrokerUser.Edit.ViewTitle");
 
 			return View(user);
 		}
@@ -116,12 +116,12 @@ namespace VerneMQ.Control.Controllers
 
 			model.Permissions = model.PermissionsJson.DeserializeJson<List<MqttPermission>>();
 
-			ViewData["Title"] = Tx.T("MqttUser.Index.Title");
-			ViewData["ViewTitle"] = model.Id > 0 ? Tx.T("MqttUser.Edit.ViewTitle") : Tx.T("MqttUser.Create.ViewTitle");
+			ViewData["Title"] = Tx.T("BrokerUser.Index.Title");
+			ViewData["ViewTitle"] = model.Id > 0 ? Tx.T("BrokerUser.Edit.ViewTitle") : Tx.T("BrokerUser.Create.ViewTitle");
 
 			if (string.IsNullOrWhiteSpace(model.Username))
 			{
-				ModelState.AddModelError(nameof(model.Username), Tx.T("MqttUser.Edit.Username.Empty"));
+				ModelState.AddModelError(nameof(model.Username), Tx.T("BrokerUser.Edit.Username.Empty"));
 				return View(model);
 			}
 
@@ -131,7 +131,7 @@ namespace VerneMQ.Control.Controllers
 				.Where(u => u.Username == model.Username)
 				.Any())
 			{
-				ModelState.AddModelError(nameof(model.Username), Tx.T("MqttUser.Edit.Username.Duplicate"));
+				ModelState.AddModelError(nameof(model.Username), Tx.T("BrokerUser.Edit.Username.Duplicate"));
 				return View(model);
 			}
 

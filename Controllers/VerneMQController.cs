@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -45,25 +44,25 @@ namespace VerneMQ.Control.Controllers
 			};
 
 			var metrics = await VmqHelper.GetMetrics(configuration.GetValue("VerneMQ:Metrics", "http://localhost:8888/metrics"), logger, HttpContext.RequestAborted);
-			if (metrics?.Any() != true)
-				return View(model);
-
-			model.SocketClose = metrics["socket_close"];
-			model.SocketOpen = metrics["socket_open"];
-			model.BytesReceived = metrics["bytes_received"];
-			model.BytesSent = metrics["bytes_sent"];
-			model.MessagesReceived = metrics["mqtt_publish_received"];
-			model.MessagesSent = metrics["mqtt_publish_sent"];
-			model.QueueIn = metrics["queue_message_in"];
-			model.QueueOut = metrics["queue_message_out"];
-			model.QueueDropped = metrics["queue_message_drop"];
-			model.ClusterBytesReceived = metrics["cluster_bytes_received"];
-			model.ClusterBytesSent = metrics["cluster_bytes_sent"];
-			model.ClusterBytesDropped = metrics["cluster_bytes_dropped"];
-			model.UsedMemoryBytes = metrics["vm_memory_total"];
-			model.UptimeMilliseconds = metrics["system_wallclock"];
-			model.RetainedMessages = metrics["retain_messages"];
-			model.Subscriptions = metrics["router_subscriptions"];
+			if (metrics?.Count > 0)
+			{
+				model.SocketClose = metrics.TryGetValue("socket_close", out ulong socketClose) ? socketClose : 0;
+				model.SocketOpen = metrics.TryGetValue("socket_open", out ulong socketOpen) ? socketOpen : 0;
+				model.BytesReceived = metrics.TryGetValue("bytes_received", out ulong bytesReceived) ? bytesReceived : 0;
+				model.BytesSent = metrics.TryGetValue("bytes_sent", out ulong bytesSent) ? bytesSent : 0;
+				model.MessagesReceived = metrics.TryGetValue("mqtt_publish_received", out ulong messagesReceived) ? messagesReceived : 0;
+				model.MessagesSent = metrics.TryGetValue("mqtt_publish_sent", out ulong messagesSent) ? messagesSent : 0;
+				model.QueueIn = metrics.TryGetValue("queue_message_in", out ulong queueIn) ? queueIn : 0;
+				model.QueueOut = metrics.TryGetValue("queue_message_out", out ulong queueOut) ? queueOut : 0;
+				model.QueueDropped = metrics.TryGetValue("queue_message_drop", out ulong queueDropped) ? queueDropped : 0;
+				model.ClusterBytesReceived = metrics.TryGetValue("cluster_bytes_received", out ulong clusterBytesReceived) ? clusterBytesReceived : 0;
+				model.ClusterBytesSent = metrics.TryGetValue("cluster_bytes_sent", out ulong clusterBytesSent) ? clusterBytesSent : 0;
+				model.ClusterBytesDropped = metrics.TryGetValue("cluster_bytes_dropped", out ulong clusterBytesDropped) ? clusterBytesDropped : 0;
+				model.UsedMemoryBytes = metrics.TryGetValue("vm_memory_total", out ulong usedMemoryBytes) ? usedMemoryBytes : 0;
+				model.UptimeMilliseconds = metrics.TryGetValue("system_wallclock", out ulong uptimeMilliseconds) ? uptimeMilliseconds : 0;
+				model.RetainedMessages = metrics.TryGetValue("retain_messages", out ulong retainedMessages) ? retainedMessages : 0;
+				model.Subscriptions = metrics.TryGetValue("router_subscriptions", out ulong subscriptions) ? subscriptions : 0;
+			}
 
 			return View(model);
 		}

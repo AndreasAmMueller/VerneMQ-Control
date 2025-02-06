@@ -171,7 +171,7 @@ namespace VerneMQ.Control.Controllers
 			if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
 				return Redirect(returnUrl);
 
-			return RedirectToAction(nameof(MqttUserController.Index), "MqttUser");
+			return RedirectToAction(nameof(BrokerUserController.Index), "BrokerUser");
 		}
 
 		/// <summary>
@@ -182,7 +182,7 @@ namespace VerneMQ.Control.Controllers
 		public async Task<IActionResult> Logout()
 		{
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-			return RedirectToAction(nameof(MqttUserController.Index), "MqttUser");
+			return RedirectToAction(nameof(BrokerUserController.Index), "BrokerUser");
 		}
 	}
 }

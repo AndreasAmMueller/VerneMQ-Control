@@ -1,17 +1,17 @@
 ﻿@model List<MqttUser>
-<h1 class="h1"><span class="fas fa-users"></span> @Tx.T("MqttUser.Index.ViewTitle")</h1>
+<h1 class="h1"><span class="fas fa-users"></span> @Tx.T("BrokerUser.Index.ViewTitle")</h1>
 
-<form asp-area="" asp-controller="MqttUser" asp-action="Delete" asp-route-id="" method="post">
+<form asp-area="" asp-controller="BrokerUser" asp-action="Delete" asp-route-id="" method="post">
 	<div class="table-responsive">
 		<table class="table">
 			<thead class="table-light">
 				<tr>
-					<th scope="col" class="text-center" style="width: 30px;">@Tx.T("MqttUser.Index.Enabled")</th>
-					<th scope="col">@Tx.T("MqttUser.Index.Username")</th>
-					<th scope="col">@Tx.T("MqttUser.Index.ClientRegex")</th>
-					<th scope="col">@Tx.T("MqttUser.Index.BaseTopic")</th>
+					<th scope="col" class="text-center" style="width: 30px;">@Tx.T("BrokerUser.Index.Enabled")</th>
+					<th scope="col">@Tx.T("BrokerUser.Index.Username")</th>
+					<th scope="col">@Tx.T("BrokerUser.Index.ClientRegex")</th>
+					<th scope="col">@Tx.T("BrokerUser.Index.BaseTopic")</th>
 					<th scope="col" class="text-end">
-						<a asp-area="" asp-controller="MqttUser" asp-action="Create" asp-route-id="" class="btn btn-sm btn-success"><span class="fas fa-fw fa-plus"></span></a>
+						<a asp-area="" asp-controller="BrokerUser" asp-action="Create" asp-route-id="" class="btn btn-sm btn-success"><span class="fas fa-fw fa-plus"></span></a>
 					</th>
 				</tr>
 			</thead>
@@ -26,7 +26,7 @@
 						<td>@user.ClientRegex</td>
 						<td condition-class-text-muted="@(!user.DoRewrite)">@user.BaseTopic</td>
 						<td class="text-end">
-							<a asp-area="" asp-controller="MqttUser" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-outline-primary"><span class="fas fa-fw fa-pen"></span></a>
+							<a asp-area="" asp-controller="BrokerUser" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-outline-primary"><span class="fas fa-fw fa-pen"></span></a>
 							<button type="submit" name="id" value="@user.Id" class="btn btn-sm btn-outline-danger delete"><span class="fas fa-fw fa-trash"></span></button>
 						</td>
 					</tr>
@@ -40,7 +40,7 @@
 	<script type="text/javascript">
 		$(function () {
 			$('.delete').click(function (event) {
-				if (!confirm('@Tx.T("MqttUser.Index.DeleteQuestion")'))
+				if (!confirm('@Tx.T("BrokerUser.Index.DeleteQuestion")'))
 					event.preventDefault();
 			});
 		});

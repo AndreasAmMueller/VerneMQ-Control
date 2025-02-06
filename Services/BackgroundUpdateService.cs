@@ -86,22 +86,23 @@ namespace VerneMQ.Control.Services
 
 				var model = new VerneMQViewModel
 				{
-					SocketClose = metrics["socket_close"],
-					SocketOpen = metrics["socket_open"],
-					BytesReceived = metrics["bytes_received"],
-					BytesSent = metrics["bytes_sent"],
-					MessagesReceived = metrics["mqtt_publish_received"],
-					MessagesSent = metrics["mqtt_publish_sent"],
-					QueueIn = metrics["queue_message_in"],
-					QueueOut = metrics["queue_message_out"],
-					QueueDropped = metrics["queue_message_drop"],
-					ClusterBytesReceived = metrics["cluster_bytes_received"],
-					ClusterBytesSent = metrics["cluster_bytes_sent"],
-					ClusterBytesDropped = metrics["cluster_bytes_dropped"],
-					UsedMemoryBytes = metrics["vm_memory_total"],
-					UptimeMilliseconds = metrics["system_wallclock"],
-					RetainedMessages = metrics["retain_messages"],
-					Subscriptions = metrics["router_subscriptions"],
+					SocketClose = metrics.TryGetValue("socket_close", out ulong socketClose) ? socketClose : 0,
+					SocketOpen = metrics.TryGetValue("socket_open", out ulong socketOpen) ? socketOpen : 0,
+					BytesReceived = metrics.TryGetValue("bytes_received", out ulong bytesReceived) ? bytesReceived : 0,
+					BytesSent = metrics.TryGetValue("bytes_sent", out ulong bytesSent) ? bytesSent : 0,
+					MessagesReceived = metrics.TryGetValue("mqtt_publish_received", out ulong messagesReceived) ? messagesReceived : 0,
+					MessagesSent = metrics.TryGetValue("mqtt_publish_sent", out ulong messagesSent) ? messagesSent : 0,
+					QueueIn = metrics.TryGetValue("queue_message_in", out ulong queueIn) ? queueIn : 0,
+					QueueOut = metrics.TryGetValue("queue_message_out", out ulong queueOut) ? queueOut : 0,
+					QueueDropped = metrics.TryGetValue("queue_message_drop", out ulong queueDropped) ? queueDropped : 0,
+					ClusterBytesReceived = metrics.TryGetValue("cluster_bytes_received", out ulong clusterBytesReceived) ? clusterBytesReceived : 0,
+					ClusterBytesSent = metrics.TryGetValue("cluster_bytes_sent", out ulong clusterBytesSent) ? clusterBytesSent : 0,
+					ClusterBytesDropped = metrics.TryGetValue("cluster_bytes_dropped", out ulong clusterBytesDropped) ? clusterBytesDropped : 0,
+					UsedMemoryBytes = metrics.TryGetValue("vm_memory_total", out ulong usedMemoryBytes) ? usedMemoryBytes : 0,
+					UptimeMilliseconds = metrics.TryGetValue("system_wallclock", out ulong uptimeMilliseconds) ? uptimeMilliseconds : 0,
+					RetainedMessages = metrics.TryGetValue("retain_messages", out ulong retainedMessages) ? retainedMessages : 0,
+					Subscriptions = metrics.TryGetValue("router_subscriptions", out ulong subscriptions) ? subscriptions : 0,
+
 					Clients = await VmqHelper.GetClients(configuration.GetValue("VerneMQ:Admin", "/vernemq/bin/vmq-admin"), logger)
 				};
 
